@@ -1,12 +1,17 @@
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
       message: "Cows are Friends.tm",
       message2: "BusinessesIndex",
+      businesses: [],
     };
   },
-  created: function () {},
+  created: function () {
+    axios.get("http://localhost:3000/businesses").then((response) => console.log(response.data));
+  },
   methods: {},
 };
 </script>

@@ -2,7 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link>
     |
-    <router-link to="/businesses/3">BusinessesShow</router-link>
+    <router-link to="/businesses/jGBJI71RL7IDYDBcVTwnyw">BusinessesShow PPT for testing</router-link>
     |
     <router-link to="/favorites">FavoritesIndex</router-link>
     |
@@ -14,7 +14,7 @@
     |
     <router-link to="/signup">Signup</router-link>
     |
-    <router-link to="/users/:id">UsersShow</router-link>
+    <router-link to="/users/me">UsersShow</router-link>
   </div>
   <router-view />
 </template>

@@ -45,7 +45,7 @@ const routes = [
     component: Signup,
   },
   {
-    path: "/users/:id",
+    path: "/users/me",
     name: "UsersShow",
     component: UsersShow,
   },

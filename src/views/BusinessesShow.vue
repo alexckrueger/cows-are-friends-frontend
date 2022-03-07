@@ -1,4 +1,6 @@
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -6,7 +8,11 @@ export default {
       message2: "BusinessesShow",
     };
   },
-  created: function () {},
+  created: function () {
+    axios
+      .get(`http://localhost:3000/businesses/${this.$route.params.id}`)
+      .then((response) => console.log(response.data));
+  },
   methods: {},
 };
 </script>

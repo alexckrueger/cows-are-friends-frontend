@@ -1,21 +1,15 @@
 <script>
+import axios from "axios";
+
 export default {
-  data: function () {
-    return {
-      message: "Cows are Friends.tm",
-      message2: "Logout",
-    };
+  created: function () {
+    delete axios.defaults.headers.common["Authorization"];
+    localStorage.removeItem("jwt");
+    this.$router.push("/");
   },
-  created: function () {},
-  methods: {},
 };
 </script>
 
 <template>
-  <div class="home">
-    <h1>{{ message }}</h1>
-    <h2>{{ message2 }}</h2>
-  </div>
+  <div class="logout"></div>
 </template>
-
-<style></style>
