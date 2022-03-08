@@ -1,4 +1,6 @@
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -6,7 +8,9 @@ export default {
       message2: "UsersShow",
     };
   },
-  created: function () {},
+  created: function () {
+    axios.get("http://localhost:3000/users/me").then((response) => console.log(response.data));
+  },
   methods: {},
 };
 </script>
