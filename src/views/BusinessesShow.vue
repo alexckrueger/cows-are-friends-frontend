@@ -22,7 +22,7 @@ export default {
   <div class="home">
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
-    <p>{{ business }}</p>
+    <button v-on:click="this.$router.push('/')">&lt;-- Back to search</button>
     <p>name: {{ business.name }}</p>
     <p>overall_rating: {{ business.overall_rating }}</p>
     <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
