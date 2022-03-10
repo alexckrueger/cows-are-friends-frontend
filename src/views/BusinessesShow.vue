@@ -41,7 +41,7 @@ export default {
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
     <p>{{ business }}</p>
-    <button v-on:click="this.$router.push('/')">&lt;-- Back to search</button>
+    <router-link to="/">Back to search</router-link>
     <p>name: {{ business.name }}</p>
     <p>overall_rating: {{ business.overall_rating }}</p>
     <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
@@ -62,7 +62,7 @@ export default {
     </div>
     <div v-for="review in business.reviews" v-bind:key="review.id">
       <h3>REVIEW</h3>
-      <p>reviewer: {{ review.user }}</p>
+      <p>reviewer: {{ review.user.name }}</p>
       <p>overall_rating: {{ review.overall_rating }}</p>
       <p>veggie_friendly_menu_rating: {{ review.veggie_friendly_menu_rating }}</p>
       <p>veggie_options_rating: {{ review.veggie_options_rating }}</p>
