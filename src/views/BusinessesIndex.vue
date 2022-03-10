@@ -11,7 +11,7 @@ export default {
     };
   },
   created: function () {
-    axios.get("http://localhost:3000/businesses").then((response) => {
+    axios.get("/businesses").then((response) => {
       console.log(response.data), (this.businesses = response.data);
     });
   },
@@ -21,7 +21,10 @@ export default {
       this.$router.push(`/businesses/${business.id}`);
     },
     searchBusinesses: function () {
-      console.log(this.search);
+      this.businesses = [];
+      axios.get(`/businesses?search=${this.search}`).then((response) => {
+        console.log(response.data), (this.businesses = response.data);
+      });
     },
   },
 };
@@ -35,12 +38,16 @@ export default {
       <input type="text" v-model="search" />
       <button v-on:click="searchBusinesses">Search</button>
     </div>
-    <p>{{ businesses[0] }}</p>
     <div v-for="business in businesses" v-bind:key="business.id">
       <h2>{{ business.name }}</h2>
-      <p>Overall Rating: {{ business.overall_rating }} ({{ business.review_count }} reviews)</p>
-      <p>Veggie Options Rating: {{ business.veggie_options_rating }}</p>
-      <p>Veggie-friendly Menu Rating: {{ business.veggie_friendly_menu_rating }}</p>
+      <div v-if="business.review_count > 0">
+        <p>Overall Rating: {{ business.overall_rating }} ({{ business.review_count }} reviews)</p>
+        <p>Veggie Options Rating: {{ business.veggie_options_rating }}</p>
+        <p>Veggie-friendly Menu Rating: {{ business.veggie_friendly_menu_rating }}</p>
+      </div>
+      <div v-else>
+        <p>Be the first to review this restaurant!</p>
+      </div>
       <div v-for="category in business.categories" v-bind:key="category.alias">
         {{ category.title }}
       </div>
