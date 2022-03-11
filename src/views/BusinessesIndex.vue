@@ -1,5 +1,7 @@
 <script>
 import axios from "axios";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
 export default {
   data: function () {
@@ -8,6 +10,7 @@ export default {
       message2: "BusinessesIndex",
       businesses: [],
       search: "",
+      center: [41.8781, -87.6298],
     };
   },
   created: function () {
@@ -26,6 +29,20 @@ export default {
         console.log(response.data), (this.businesses = response.data);
       });
     },
+    setupLeafletMap: function () {
+      var mapboxKey = process.env.VUE_APP_MAPBOX_API_KEY;
+      const mapDiv = L.map("mapContainer").setView(this.center, 14);
+      L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution:
+          'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: "mapbox/streets-v11",
+        accessToken: mapboxKey,
+      }).addTo(mapDiv);
+    },
+  },
+  mounted: function () {
+    this.setupLeafletMap();
   },
 };
 </script>
@@ -38,6 +55,7 @@ export default {
       <input type="text" v-model="search" />
       <button v-on:click="searchBusinesses">Search</button>
     </div>
+    <div id="mapContainer"></div>
     <div v-for="business in businesses" v-bind:key="business.id">
       <h2>{{ business.name }}</h2>
       <div v-if="business.review_count > 0">
@@ -62,5 +80,9 @@ export default {
 img {
   height: 200px;
   width: auto;
+}
+#mapContainer {
+  width: 100vw;
+  height: 60vh;
 }
 </style>
