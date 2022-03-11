@@ -10,6 +10,8 @@ export default {
       business: [],
       favorited: false,
       favorited_id: 0,
+      display_photo: "",
+      display_address: "",
     };
   },
   created: function () {
@@ -17,6 +19,11 @@ export default {
       this.business = response.data;
       this.favorited = response.data.favorited;
       this.favorited_id = response.data.favorited_id;
+      this.display_photo = response.data.photos[0];
+      this.display_address = response.data.location.display_address[0].concat(
+        ", ",
+        response.data.location.display_address[1]
+      );
     });
   },
   methods: {
@@ -31,6 +38,9 @@ export default {
       axios.delete(`/favorites/${this.favorited_id}`).then((response) => console.log(response.data));
       this.favorited = false;
       this.favorited_id = 0;
+    },
+    redirectToReview: function (business) {
+      this.$router.push(`/reviews/new?id=${business.id}`);
     },
   },
 };
@@ -47,10 +57,11 @@ export default {
     <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
     <p>veggie_options_rating: {{ business.veggie_options_rating }}</p>
     <p>images: {{ business.photos }}</p>
-    <img :src="business.photos[0]" alt="" />
+    <img :src="display_photo" alt="" />
     <div v-for="category in business.categories" v-bind:key="category">
       <p>Category: {{ category["title"] }}</p>
     </div>
+    <p>{{ display_address }}</p>
     <p>phone number: {{ business.display_phone }}</p>
     <p>yelp rating: {{ business.rating }}</p>
     <div v-if="isLoggedIn">
@@ -58,7 +69,7 @@ export default {
       <p>Has user reviewed? {{ business.reviewed }}</p>
       <button v-if="!favorited" v-on:click="createFavorite()">Favorite this restaurant</button>
       <button v-else v-on:click="deleteFavorite()">Unfavorite this restaurant</button>
-      <button v-if="!business.reviewed" v-on:click="this.$router.push(`/reviews/new`)">Review this restaurant</button>
+      <button v-if="!business.reviewed" v-on:click="redirectToReview(business)">Review this restaurant</button>
     </div>
     <div v-for="review in business.reviews" v-bind:key="review.id">
       <h3>REVIEW</h3>
