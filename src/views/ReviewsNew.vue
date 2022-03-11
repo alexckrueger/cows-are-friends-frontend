@@ -7,8 +7,7 @@ export default {
       message: "Cows are Friends.tm",
       message2: "ReviewsNew",
       business: [],
-      business_id: this.$route.query.id,
-      newReview: {},
+      newReview: { business_id: this.$route.query.id },
       errors: [],
       display_address: "",
       display_photo: "",
@@ -26,7 +25,15 @@ export default {
   },
   methods: {
     createReview: function () {
-      console.log(this.newReview);
+      axios
+        .post(`/reviews`, this.newReview)
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push(`/businesses/${this.$route.query.id}`);
+        })
+        .catch((errors) => {
+          this.errors = errors.response.data.errors;
+        });
     },
   },
 };
@@ -35,11 +42,17 @@ export default {
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+    <button @click="$router.go(-1)">Back to Restaurant</button>
     <h2>{{ business.name }}</h2>
     <p>{{ display_address }}</p>
     <img :src="display_photo" alt="" />
 
     <form action="submit" v-on:submit.prevent="createReview()">
+      <div v-if="errors">
+        <ul v-for="error in errors" v-bind:key="error">
+          <li>{{ error }}</li>
+        </ul>
+      </div>
       <div>
         <label for="overall_rating">
           Overall Rating:
