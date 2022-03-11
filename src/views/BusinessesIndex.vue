@@ -11,11 +11,15 @@ export default {
       businesses: [],
       search: "",
       center: [41.8781, -87.6298],
+      businessLocations: [],
     };
   },
   created: function () {
     axios.get("/businesses").then((response) => {
       console.log(response.data), (this.businesses = response.data);
+      response.data.forEach((business) => {
+        this.businessLocations.push([business.coordinates.latitude, business.coordinates.longitude]);
+      });
     });
   },
   methods: {
@@ -39,6 +43,14 @@ export default {
         id: "mapbox/streets-v11",
         accessToken: mapboxKey,
       }).addTo(mapDiv);
+      var myIcon = L.icon({
+        iconUrl: "https://cdn-icons-png.flaticon.com/512/723/723633.png",
+        iconSize: [30, 40],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      L.marker([41.8781, -87.6298], { icon: myIcon }).addTo(mapDiv);
     },
   },
   mounted: function () {
@@ -51,6 +63,7 @@ export default {
   <div class="home">
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
+    <p>{{ businessLocations }}</p>
     <div>
       <input type="text" v-model="search" />
       <button v-on:click="searchBusinesses">Search</button>
