@@ -17,9 +17,7 @@ export default {
   created: function () {
     axios.get("/businesses").then((response) => {
       console.log(response.data), (this.businesses = response.data);
-      response.data.forEach((business) => {
-        this.businessLocations.push([business.coordinates.latitude, business.coordinates.longitude]);
-      });
+      this.setupLeafletMap();
     });
   },
   methods: {
@@ -35,7 +33,7 @@ export default {
     },
     setupLeafletMap: function () {
       var mapboxKey = process.env.VUE_APP_MAPBOX_API_KEY;
-      const mapDiv = L.map("mapContainer").setView(this.center, 14);
+      const mapDiv = L.map("mapContainer").setView(this.center, 13);
       L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution:
           'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -51,11 +49,15 @@ export default {
       });
 
       L.marker([41.8781, -87.6298], { icon: myIcon }).addTo(mapDiv);
+      this.businesses.forEach((business) => {
+        // var popup = L.popup.autopan.setContent("Hello oi");
+        L.marker([business.coordinates.latitude, business.coordinates.longitude], { icon: myIcon })
+          .bindPopup(business.name)
+          .addTo(mapDiv);
+      });
     },
   },
-  mounted: function () {
-    this.setupLeafletMap();
-  },
+  mounted: function () {},
 };
 </script>
 
@@ -63,7 +65,7 @@ export default {
   <div class="home">
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
-    <p>{{ businessLocations }}</p>
+    <p>{{ businesses[0] }}</p>
     <div>
       <input type="text" v-model="search" />
       <button v-on:click="searchBusinesses">Search</button>

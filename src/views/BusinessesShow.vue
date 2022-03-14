@@ -54,8 +54,10 @@ export default {
     <p>overall_rating: {{ business.overall_rating }}</p>
     <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
     <p>veggie_options_rating: {{ business.veggie_options_rating }}</p>
-    <p>images: {{ business.photos }}</p>
-    <img :src="display_photo" alt="" />
+    <div v-if="business.photos">
+      <p>images: {{ business.photos[0] }}</p>
+      <img :src="business.photos[0]" alt="" />
+    </div>
     <div v-for="category in business.categories" v-bind:key="category">
       <p>Category: {{ category["title"] }}</p>
     </div>
