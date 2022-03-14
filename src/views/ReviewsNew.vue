@@ -55,20 +55,35 @@ export default {
       </div>
       <div>
         <label for="overall_rating">
-          Overall Rating:
-          <input type="text" v-model="newReview.overall_rating" placeholder="1-5" />
+          Overall Rating: 1
+          <input type="radio" v-model="newReview.overall_rating" value="1" />
+          <input type="radio" v-model="newReview.overall_rating" value="2" />
+          <input type="radio" v-model="newReview.overall_rating" value="3" />
+          <input type="radio" v-model="newReview.overall_rating" value="4" />
+          <input type="radio" v-model="newReview.overall_rating" value="5" />
+          5
         </label>
       </div>
       <div>
         <label for="veggie_options_rating">
-          Veggie Options Rating:
-          <input type="text" v-model="newReview.veggie_options_rating" placeholder="1-5" />
+          Veggie Options Rating: 1
+          <input type="radio" v-model="newReview.veggie_options_rating" value="1" />
+          <input type="radio" v-model="newReview.veggie_options_rating" value="2" />
+          <input type="radio" v-model="newReview.veggie_options_rating" value="3" />
+          <input type="radio" v-model="newReview.veggie_options_rating" value="4" />
+          <input type="radio" v-model="newReview.veggie_options_rating" value="5" />
+          5
         </label>
       </div>
       <div>
         <label for="veggie_friendly_menu_rating">
-          Veggie Friendly Menu Rating:
-          <input type="text" v-model="newReview.veggie_friendly_menu_rating" placeholder="1-5" />
+          Veggie Friendly Menu Rating: 1
+          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="1" />
+          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="2" />
+          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="3" />
+          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="4" />
+          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="5" />
+          5
         </label>
       </div>
       <div>

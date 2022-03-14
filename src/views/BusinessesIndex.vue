@@ -11,12 +11,10 @@ export default {
       businesses: [],
       search: "",
       center: [41.8781, -87.6298],
-      businessLocations: [],
       mapDiv: "",
       myIcon: L.icon({
         iconUrl: "https://cdn-icons-png.flaticon.com/512/723/723633.png",
         iconSize: [30, 40],
-        iconAnchor: [22, 94],
         popupAnchor: [-3, -76],
       }),
       markerLayer: [],
@@ -95,8 +93,8 @@ export default {
       <div v-else>
         <p>Be the first to review this restaurant!</p>
       </div>
-      <div v-for="category in business.categories" v-bind:key="category.alias">
-        {{ category.title }}
+      <div v-for="category in business.categories" v-bind:key="category">
+        {{ category["title"] }}
       </div>
       <img :src="business.image_url" alt="" />
       <br />

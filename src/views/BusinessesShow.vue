@@ -12,6 +12,7 @@ export default {
       favorited_id: 0,
       display_photo: "",
       display_address: "",
+      categories: [],
     };
   },
   created: function () {
@@ -24,6 +25,9 @@ export default {
         ", ",
         response.data.location.display_address[1]
       );
+      response.data.categories.forEach((category) => {
+        this.categories.push(category["title"]);
+      });
     });
   },
   methods: {
@@ -55,12 +59,9 @@ export default {
     <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
     <p>veggie_options_rating: {{ business.veggie_options_rating }}</p>
     <div v-if="business.photos">
-      <p>images: {{ business.photos[0] }}</p>
       <img :src="business.photos[0]" alt="" />
     </div>
-    <div v-for="category in business.categories" v-bind:key="category">
-      <p>Category: {{ category["title"] }}</p>
-    </div>
+    <p>Categories: {{ categories.join(", ") }}</p>
     <p>{{ display_address }}</p>
     <p>phone number: {{ business.display_phone }}</p>
     <p>yelp rating: {{ business.rating }}</p>
