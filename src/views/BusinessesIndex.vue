@@ -15,7 +15,7 @@ export default {
       myIcon: L.icon({
         iconUrl: "https://cdn-icons-png.flaticon.com/512/723/723633.png",
         iconSize: [30, 40],
-        popupAnchor: [-3, -76],
+        popupAnchor: [0, -26],
       }),
       markerLayer: [],
       markers: [],
@@ -61,6 +61,11 @@ export default {
       this.markerLayer = L.layerGroup(this.markers);
       this.markerLayer.addTo(this.mapDiv);
     },
+    pluralizeReview: function (business) {
+      if (business.review_count > 1) {
+        return "reviews";
+      } else return "review";
+    },
   },
   mounted: function () {
     this.setupLeafletMap();
@@ -86,7 +91,9 @@ export default {
     <div v-for="business in businesses" v-bind:key="business.id">
       <h2>{{ business.name }}</h2>
       <div v-if="business.review_count > 0">
-        <p>Overall Rating: {{ business.overall_rating }} ({{ business.review_count }} reviews)</p>
+        <p>
+          Overall Rating: {{ business.overall_rating }} ({{ business.review_count }} {{ pluralizeReview(business) }})
+        </p>
         <p>Veggie Options Rating: {{ business.veggie_options_rating }}</p>
         <p>Veggie-friendly Menu Rating: {{ business.veggie_friendly_menu_rating }}</p>
       </div>
