@@ -2,6 +2,7 @@
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import places from "places.js";
 
 export default {
   data: function () {
@@ -19,6 +20,7 @@ export default {
       }),
       markerLayer: [],
       markers: [],
+      address: "",
     };
   },
   created: function () {
@@ -66,9 +68,17 @@ export default {
         return "reviews";
       } else return "review";
     },
+    addressButton: function () {
+      console.log(this.address);
+    },
   },
   mounted: function () {
     this.setupLeafletMap();
+    places({
+      appId: process.env.VUE_APP_PLACES_APP_ID,
+      apiKey: process.env.VUE_APP_PLACES_API_KEY,
+      container: "#address-input",
+    });
   },
   watch: {
     businesses() {
@@ -84,8 +94,10 @@ export default {
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
     <div>
-      <input type="text" v-model="search" />
+      <input type="search" v-model="search" />
       <button v-on:click="searchBusinesses">Search</button>
+      <input type="search" id="address-input" placeholder="Address (optional)" v-model="address" />
+      <button v-on:click="addressButton()">Address button</button>
     </div>
     <div id="mapContainer"></div>
     <div v-for="business in businesses" v-bind:key="business.id">
