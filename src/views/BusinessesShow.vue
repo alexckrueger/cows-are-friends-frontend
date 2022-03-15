@@ -55,9 +55,14 @@ export default {
     <h1>{{ message }}</h1>
     <router-link to="/">Back to search</router-link>
     <h1>{{ business.name }}</h1>
-    <p>overall_rating: {{ business.overall_rating }}</p>
-    <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
-    <p>veggie_options_rating: {{ business.veggie_options_rating }}</p>
+    <div v-if="business.review_count">
+      <p>overall_rating: {{ business.overall_rating }}</p>
+      <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
+      <p>veggie_options_rating: {{ business.veggie_options_rating }}</p>
+    </div>
+    <div v-else>
+      <p>Be the first to review this restaurant!</p>
+    </div>
     <div v-if="business.photos">
       <img :src="business.photos[0]" alt="" />
     </div>

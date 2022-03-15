@@ -17,6 +17,7 @@ export default {
         .patch("/users/me", this.updateUserParams)
         .then((response) => {
           console.log("User saved successfully", response.data);
+          this.$router.push(`/users/me`);
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
