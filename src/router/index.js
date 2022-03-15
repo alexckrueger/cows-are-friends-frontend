@@ -7,6 +7,7 @@ import Logout from "../views/Logout.vue";
 import ReviewsNew from "../views/ReviewsNew.vue";
 import Signup from "../views/Signup.vue";
 import UsersShow from "../views/UsersShow.vue";
+import UsersEdit from "../views/UsersEdit.vue";
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: "/users/me",
     name: "UsersShow",
     component: UsersShow,
+  },
+  {
+    path: "/users/me/edit",
+    name: "UsersEdit",
+    component: UsersEdit,
   },
 ];
 

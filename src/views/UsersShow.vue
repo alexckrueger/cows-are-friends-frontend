@@ -7,9 +7,6 @@ export default {
       message: "Cows are Friends.tm",
       message2: "UsersShow",
       user: {},
-      updateUserParams: {},
-      showEdit: false,
-      errors: [],
     };
   },
   created: function () {
@@ -24,26 +21,7 @@ export default {
         }
       });
   },
-  methods: {
-    updateUser: function () {
-      axios
-        .patch("/users/me", this.updateUserParams)
-        .then((response) => {
-          console.log("User saved successfully", response.data);
-          this.$router.go();
-        })
-        .catch((error) => {
-          this.errors = [];
-          this.errors = error.response.data.errors;
-        });
-    },
-    deleteUser: function () {
-      if (confirm("Are you sure you want to delete your account?")) {
-        axios.delete("/users/me").then((response) => console.log(response.data));
-        this.$router.push(`/signup`);
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -51,28 +29,13 @@ export default {
   <div class="home">
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
-    <div v-if="errors.length > 0">{{ errors }}</div>
-    <div v-if="!showEdit">
+    <div>
       <h2>{{ user.name }}</h2>
       <router-link to="/favorites">FavoritesIndex</router-link>
       <br />
       <img :src="user.image_url" alt="Image" />
       <br />
-      <button v-on:click="showEdit = !showEdit">Edit Profile</button>
-    </div>
-    <div v-else>
-      <div>
-        <label>Name:</label>
-        <input type="text" v-model="updateUserParams.name" />
-      </div>
-      <div>
-        <label>Image URL:</label>
-        <input type="text" v-model="updateUserParams.image_url" />
-      </div>
-      <button v-on:click="updateUser()">Save Changes</button>
-      <button v-on:click="showEdit = !showEdit">Cancel</button>
-      <br />
-      <button v-on:click="deleteUser()">Delete Profile</button>
+      <button v-on:click="this.$router.push(`/users/me/edit`)">Edit Profile</button>
     </div>
   </div>
 </template>
