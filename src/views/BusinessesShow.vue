@@ -5,6 +5,9 @@ import L from "leaflet";
 import Lightgallery from "lightgallery/vue";
 import lgZoom from "lightgallery/plugins/zoom";
 import lgVideo from "lightgallery/plugins/video";
+import dayjs from "dayjs";
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 export default {
   components: {
@@ -84,6 +87,9 @@ export default {
     onBeforeSlide: () => {
       console.log("calling before slide");
     },
+    testDayjs: function (created_at) {
+      return dayjs(created_at).toNow(true);
+    },
   },
   watch: {
     business() {
@@ -95,6 +101,7 @@ export default {
 
 <template>
   <div class="home">
+    <button v-on:click="testDayjs()">TESTING DAYJS</button>
     <h1>{{ message }}</h1>
     <router-link to="/">Back to search</router-link>
     <h1>{{ business.name }}</h1>
@@ -135,6 +142,7 @@ export default {
     <div v-for="review in business.reviews" v-bind:key="review.id">
       <h3>REVIEW</h3>
       <p>reviewer: {{ review.user.name }}</p>
+      <p>reviewed {{ testDayjs(review.created_at) }} ago</p>
       <p>overall_rating: {{ review.overall_rating }}</p>
       <p>veggie_friendly_menu_rating: {{ review.veggie_friendly_menu_rating }}</p>
       <p>veggie_options_rating: {{ review.veggie_options_rating }}</p>
