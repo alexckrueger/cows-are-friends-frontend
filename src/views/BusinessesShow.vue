@@ -2,8 +2,14 @@
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import Lightgallery from "lightgallery/vue";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgVideo from "lightgallery/plugins/video";
 
 export default {
+  components: {
+    Lightgallery,
+  },
   data: function () {
     return {
       isLoggedIn: !!localStorage.jwt,
@@ -22,6 +28,7 @@ export default {
       }),
       center: [],
       mapDiv: "",
+      plugins: [lgZoom, lgVideo],
     };
   },
   created: function () {
@@ -58,7 +65,7 @@ export default {
     },
     setupLeafletMap: function () {
       var mapboxKey = process.env.VUE_APP_MAPBOX_API_KEY;
-      this.mapDiv = L.map("mapContainer").setView(this.center, 15);
+      this.mapDiv = L.map("smallMapContainer").setView(this.center, 15);
       L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution:
           'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -70,6 +77,12 @@ export default {
         icon: this.myIcon,
       }).bindPopup(this.business.name);
       marker.addTo(this.mapDiv);
+    },
+    onInit: () => {
+      console.log("lightGallery has been initialized");
+    },
+    onBeforeSlide: () => {
+      console.log("calling before slide");
     },
   },
   watch: {
@@ -83,10 +96,23 @@ export default {
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <button v-on:click="setupLeafletMap()">map!</button>
     <router-link to="/">Back to search</router-link>
     <h1>{{ business.name }}</h1>
-    <div id="mapContainer"></div>
+    <div v-if="business.photos">
+      <lightgallery :settings="{ speed: 500, plugins: plugins }" :onInit="onInit" :onBeforeSlide="onBeforeSlide">
+        <a data-lg-size="1406-1390" class="gallery-item" :data-src="`${business.photos[0]}`">
+          <img class="img-responsive" :src="`${business.photos[0]}`" />
+        </a>
+        <a v-if="business.photos[1]" data-lg-size="1406-1390" class="gallery-item" :data-src="`${business.photos[1]}`">
+          <img class="img-responsive" :src="`${business.photos[1]}`" />
+        </a>
+        <a v-if="business.photos[2]" data-lg-size="1406-1390" class="gallery-item" :data-src="`${business.photos[2]}`">
+          <img class="img-responsive" :src="`${business.photos[2]}`" />
+        </a>
+      </lightgallery>
+    </div>
+
+    <div id="smallMapContainer"></div>
     <div v-if="business.review_count">
       <p>overall_rating: {{ business.overall_rating }}</p>
       <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
@@ -94,9 +120,6 @@ export default {
     </div>
     <div v-else>
       <p>Be the first to review this restaurant!</p>
-    </div>
-    <div v-if="business.photos">
-      <img :src="business.photos[0]" alt="" />
     </div>
     <p>Categories: {{ categories.join(", ") }}</p>
     <p>{{ display_address }}</p>
@@ -123,8 +146,17 @@ export default {
 </template>
 
 <style>
-#mapContainer {
+#smallMapContainer {
   width: 30vw;
   height: 30vh;
+}
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css");
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css");
+@import url("https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-video.css");
+body {
+  margin: 0;
+}
+.gallery-item {
+  margin: 5px;
 }
 </style>
