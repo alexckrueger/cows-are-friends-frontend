@@ -16,6 +16,7 @@ export default {
   data: function () {
     return {
       isLoggedIn: !!localStorage.jwt,
+      user_id: localStorage.user_id,
       message: "Cows are Friends.tm",
       message2: "BusinessesShow",
       business: [],
@@ -90,6 +91,11 @@ export default {
     testDayjs: function (created_at) {
       return dayjs(created_at).toNow(true);
     },
+    deleteReview: function (review) {
+      console.log(review);
+      axios.delete(`/reviews/${review.id}`).then((response) => console.log(response.data));
+      this.$router.go();
+    },
   },
   watch: {
     business() {
@@ -101,8 +107,8 @@ export default {
 
 <template>
   <div class="home">
-    <button v-on:click="testDayjs()">TESTING DAYJS</button>
     <h1>{{ message }}</h1>
+    <p>{{ user_id }}</p>
     <router-link to="/">Back to search</router-link>
     <h1>{{ business.name }}</h1>
     <div v-if="business.photos">
@@ -149,6 +155,7 @@ export default {
       <p v-if="review.recommended_dishes">recommended_dishes: {{ review.recommended_dishes }}</p>
       <p>comment: {{ review.comment }}</p>
       <img v-if="review.image_url" :src="review.image_url" />
+      <button v-if="user_id == review.user.id" v-on:click="deleteReview(review)">Delete Your Review</button>
     </div>
   </div>
 </template>
