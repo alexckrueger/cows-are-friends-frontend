@@ -108,7 +108,6 @@ export default {
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    <p>{{ user_id }}</p>
     <router-link to="/">Back to search</router-link>
     <h1>{{ business.name }}</h1>
     <div v-if="business.photos">
