@@ -95,7 +95,11 @@ export default {
           Overall Rating: {{ business.overall_rating }} ({{ business.review_count }} {{ pluralizeReview(business) }})
         </p>
         <p>Veggie Options Rating: {{ business.veggie_options_rating }}</p>
-        <p>Veggie-friendly Menu Rating: {{ business.veggie_friendly_menu_rating }}</p>
+        <p>Menu labels:</p>
+        <div>
+          Vegetarian: {{ business.menu_vegetarian_labels }}, Vegan: {{ business.menu_vegan_labels }}, Vegan:
+          {{ business.menu_gluten_free_labels }}
+        </div>
       </div>
       <div v-else>
         <p>Be the first to review this restaurant!</p>

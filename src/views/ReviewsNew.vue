@@ -75,15 +75,38 @@ export default {
           5
         </label>
       </div>
+      <p>Menu Labels:</p>
       <div>
-        <label for="veggie_friendly_menu_rating">
-          Veggie Friendly Menu Rating: 1
-          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="1" />
-          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="2" />
-          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="3" />
-          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="4" />
-          <input type="radio" v-model="newReview.veggie_friendly_menu_rating" value="5" />
-          5
+        <label for="menu_vegetarian_labels">
+          Vegetarian
+          <input type="radio" v-model="newReview.menu_vegetarian_labels" value="1" />
+          Yes
+          <input type="radio" v-model="newReview.menu_vegetarian_labels" value="0" />
+          Don't Know
+          <input type="radio" v-model="newReview.menu_vegetarian_labels" value="-1" />
+          No
+        </label>
+      </div>
+      <div>
+        <label for="menu_vegan_labels">
+          Vegan
+          <input type="radio" v-model="newReview.menu_vegan_labels" value="1" />
+          Yes
+          <input type="radio" v-model="newReview.menu_vegan_labels" value="0" />
+          Don't Know
+          <input type="radio" v-model="newReview.menu_vegan_labels" value="-1" />
+          No
+        </label>
+      </div>
+      <div>
+        <label for="menu_gluten_free_labels">
+          Gluten-free
+          <input type="radio" v-model="newReview.menu_gluten_free_labels" value="1" />
+          Yes
+          <input type="radio" v-model="newReview.menu_gluten_free_labels" value="0" />
+          Don't Know
+          <input type="radio" v-model="newReview.menu_gluten_free_labels" value="-1" />
+          No
         </label>
       </div>
       <div>

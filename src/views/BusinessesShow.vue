@@ -92,9 +92,10 @@ export default {
       return dayjs(created_at).toNow(true);
     },
     deleteReview: function (review) {
-      console.log(review);
-      axios.delete(`/reviews/${review.id}`).then((response) => console.log(response.data));
-      this.$router.go();
+      if (confirm("Are you sure you to delete this?")) {
+        axios.delete(`/reviews/${review.id}`).then((response) => console.log("Success!", response.data));
+        this.$router.go();
+      }
     },
   },
   watch: {
@@ -127,8 +128,12 @@ export default {
     <div id="smallMapContainer"></div>
     <div v-if="business.review_count">
       <p>overall_rating: {{ business.overall_rating }}</p>
-      <p>veggie_friendly_menu_rating: {{ business.veggie_friendly_menu_rating }}</p>
       <p>veggie_options_rating: {{ business.veggie_options_rating }}</p>
+      <p>Menu labels:</p>
+      <div>
+        Vegetarian: {{ business.menu_vegetarian_labels }}, Vegan: {{ business.menu_vegan_labels }}, Vegan:
+        {{ business.menu_gluten_free_labels }}
+      </div>
     </div>
     <div v-else>
       <p>Be the first to review this restaurant!</p>
@@ -149,7 +154,11 @@ export default {
       <p>reviewer: {{ review.user.name }}</p>
       <p>reviewed {{ testDayjs(review.created_at) }} ago</p>
       <p>overall_rating: {{ review.overall_rating }}</p>
-      <p>veggie_friendly_menu_rating: {{ review.veggie_friendly_menu_rating }}</p>
+      <p>Menu labels:</p>
+      <div>
+        Vegetarian: {{ review.menu_vegetarian_labels }}, Vegan: {{ review.menu_vegan_labels }}, Vegan:
+        {{ review.menu_gluten_free_labels }}
+      </div>
       <p>veggie_options_rating: {{ review.veggie_options_rating }}</p>
       <p v-if="review.recommended_dishes">recommended_dishes: {{ review.recommended_dishes }}</p>
       <p>comment: {{ review.comment }}</p>
