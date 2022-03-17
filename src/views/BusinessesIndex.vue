@@ -10,6 +10,7 @@ export default {
       message2: "BusinessesIndex",
       businesses: [],
       search: "",
+      location: "",
       center: [41.8781, -87.6298],
       mapDiv: "",
       myIcon: L.icon({
@@ -19,6 +20,7 @@ export default {
       }),
       markerLayer: [],
       markers: [],
+      error: "",
     };
   },
   created: function () {
@@ -29,13 +31,22 @@ export default {
   methods: {
     searchBusinesses: function () {
       this.businesses = [];
-      axios.get(`/businesses?search=${this.search}`).then((response) => {
-        console.log(response.data), (this.businesses = response.data);
-      });
-      // Clear previous markers if they exist
-      if (this.markerLayer) {
-        this.mapDiv.removeLayer(this.markerLayer);
-      }
+      this.error = "";
+      axios
+        .get(`/businesses?search=${this.search}&location=${this.location}`)
+        .then((response) => {
+          console.log(response.data), (this.businesses = response.data);
+          // Set map center view to the first business
+          this.center = [this.businesses[0].coordinates.latitude, this.businesses[0].coordinates.longitude];
+          // Clear previous markers if they exist
+          if (this.markerLayer) {
+            this.mapDiv.removeLayer(this.markerLayer);
+          }
+        })
+        .catch((error) => {
+          console.log(error.data);
+          this.error = "Please enter a valid location";
+        });
     },
     setupLeafletMap: function () {
       var mapboxKey = process.env.VUE_APP_MAPBOX_API_KEY;
@@ -66,6 +77,9 @@ export default {
         return "reviews";
       } else return "review";
     },
+    setView: function () {
+      this.mapDiv.setView(this.center, 13);
+    },
   },
   mounted: function () {
     this.setupLeafletMap();
@@ -73,7 +87,10 @@ export default {
   watch: {
     businesses() {
       // adds markers to map whenever the business array updates
-      this.addMarkersToMap();
+      if (this.businesses.length > 0) {
+        this.addMarkersToMap();
+        this.setView();
+      }
     },
   },
 };
@@ -84,8 +101,10 @@ export default {
     <h1>{{ message }}</h1>
     <h2>{{ message2 }}</h2>
     <div>
-      <input type="search" v-model="search" />
+      <input type="search" v-model="search" placeholder="Pizza, Cookies, Ice cream..." />
+      <input type="search" v-model="location" placeholder="City, Zipcode, or Address" />
       <button v-on:click="searchBusinesses">Search</button>
+      <p v-if="error">{{ error }}</p>
     </div>
     <div id="mapContainer"></div>
     <div v-for="business in businesses" v-bind:key="business.id">
