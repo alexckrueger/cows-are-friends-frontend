@@ -1,20 +1,10 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link>
-    |
-    <router-link to="/businesses/jGBJI71RL7IDYDBcVTwnyw">BusinessesShow PPT for testing</router-link>
-    |
-    <router-link to="/favorites">FavoritesIndex</router-link>
-    |
-    <router-link to="/login">Login</router-link>
-    |
-    <router-link to="/logout">Logout</router-link>
-    |
-    <router-link to="/reviews/new">ReviewsNew</router-link>
-    |
-    <router-link to="/signup">Signup</router-link>
-    |
-    <router-link to="/users/me">UsersShow</router-link>
+    <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
+    <router-link v-if="isLoggedIn" to="/logout">Logout</router-link>
+    <router-link v-if="!isLoggedIn" to="/signup">Signup</router-link>
+    <router-link v-if="isLoggedIn" to="/users/me">My Profile</router-link>
   </div>
   <router-view />
 </template>
@@ -41,3 +31,18 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  data: function () {
+    return {
+      isLoggedIn: false,
+    };
+  },
+  watch: {
+    $route: function () {
+      this.isLoggedIn = !!localStorage.jwt;
+    },
+  },
+};
+</script>
