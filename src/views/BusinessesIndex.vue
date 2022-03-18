@@ -55,6 +55,7 @@ export default {
         maxZoom: 18,
         id: "mapbox/streets-v11",
         accessToken: mapboxKey,
+        maxHeight: 20,
       }).addTo(this.mapDiv);
     },
     addMarkersToMap: function () {
@@ -78,6 +79,8 @@ export default {
     setView: function () {
       this.mapDiv.setView(this.center, 13);
     },
+    // ratingIcon: function (rating) {
+    // } Have this return checkmark/question/red x depending on menu label buttons
   },
   mounted: function () {
     this.setupLeafletMap();
@@ -96,6 +99,115 @@ export default {
 
 <template>
   <div class="home">
+    <!-- start map list section -->
+    <div class="container-fluid no-padding">
+      <div class="row no-gutters">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <!-- Add search here -->
+          <div class="padding-40px-all border-bottom">
+            <div class="row">
+              <div class="form-group col-md-6 col-lg-12 col-xl-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text padding-10px-tb bg-white">Find</div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control padding-10px-tb"
+                    placeholder="What are you looking for?"
+                    v-model="search"
+                  />
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-lg-12 col-xl-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text padding-10px-tb bg-white">Near</div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control padding-10px-tb"
+                    placeholder="Location"
+                    required=""
+                    v-model="location"
+                  />
+                </div>
+              </div>
+              <div
+                class="input-group col-md-6 col-lg-12 col-xl-3 md-margin-15px-top sm-no-margin-top xs-margin-15px-top"
+              >
+                <button v-on:click="searchBusinesses" class="btn btn-block btn-primary">Search</button>
+              </div>
+              <p v-if="error">{{ error }}</p>
+            </div>
+          </div>
+          <!-- end search here -->
+          <div class="padding-40px-all xs-padding-90px-lr mobile-padding-15px-lr">
+            <div class="row margin-40px-bottom no-margin-lr">
+              <div
+                class="border-bottom margin-40px-bottom padding-40px-bottom"
+                v-for="business in businesses"
+                v-bind:key="business.id"
+              >
+                <div class="card card-list border-0">
+                  <div class="row align-items-center">
+                    <div class="col-md-5 col-lg-4 xs-margin-20px-bottom">
+                      <div class="card-list-img">
+                        <img class="border-radius-5" :src="business.image_url" alt="" />
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-lg-8">
+                      <div class="card-body no-padding-tb">
+                        <!-- # of stars = rating -->
+                        <div class="star">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <!-- end stars -->
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="card-title no-margin-bottom font-size22">
+                            <a href="listing-details.html" class="text-extra-dark-gray">{{ business.name }}</a>
+                          </h5>
+                        </div>
+                        <div v-if="business.review_count > 0">
+                          <span>
+                            {{ business.overall_rating }}/5 Rating ({{ business.review_count }}
+                            {{ pluralizeReview(business) }})
+                          </span>
+                          <p class="sm-margin-10px-top">
+                            Vegetarian: {{ business.menu_vegetarian_labels }}, Vegan: {{ business.menu_vegan_labels }},
+                            Vegan:
+                            {{ business.menu_gluten_free_labels }}
+                          </p>
+                        </div>
+                        <div v-else>
+                          <p>Be the first to review this restaurant!</p>
+                        </div>
+                        <div v-for="category in business.categories" v-bind:key="category">
+                          <li>
+                            {{ category["title"] }}
+                          </li>
+                        </div>
+                        <router-link class="butn alt-font" :to="`/businesses/${business.id}`">See more</router-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Map -->
+        <div class="col-lg-6 order-1 order-lg-2">
+          <div id="mapContainer"></div>
+        </div>
+        <!-- end Map -->
+      </div>
+    </div>
+    <!-- end map list section -->
     <div>
       <input type="search" v-model="search" placeholder="Pizza, Cookies, Ice cream..." />
       <input type="search" v-model="location" placeholder="City, Zipcode, or Address" />
@@ -130,12 +242,7 @@ export default {
 </template>
 
 <style>
-img {
-  height: 200px;
-  width: auto;
-}
 #mapContainer {
-  width: 100vw;
-  height: 60vh;
+  height: 60vw;
 }
 </style>
