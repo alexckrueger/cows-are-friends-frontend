@@ -4,8 +4,6 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Cows are Friends.tm",
-      message2: "ReviewsNew",
       business: [],
       newReview: { business_id: this.$route.query.id },
       errors: [],
@@ -41,7 +39,6 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
     <button @click="$router.go(-1)">Back to Restaurant</button>
     <h2>{{ business.name }}</h2>
     <p>{{ display_address }}</p>

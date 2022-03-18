@@ -4,8 +4,6 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Cows are Friends.tm",
-      message2: "UsersEdit",
       updateUserParams: {},
       errors: [],
     };
@@ -35,8 +33,6 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <h2>{{ message2 }}</h2>
     <router-link to="/users/me">Back to your profile</router-link>
     <div v-if="errors.length > 0">
       <div v-for="error in errors" v-bind:key="error">

@@ -4,8 +4,6 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Cows are Friends.tm",
-      message2: "FavoritesIndex",
       user: {},
       favorites: [],
     };
@@ -31,8 +29,6 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <h2>{{ message2 }}</h2>
     <h1>{{ user.name }} Favorites</h1>
     <div v-for="favorite in favorites" v-bind:key="favorite.id">
       <h3>{{ favorite.business.name }}</h3>

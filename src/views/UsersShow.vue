@@ -4,8 +4,6 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Cows are Friends.tm",
-      message2: "UsersShow",
       user: {},
     };
   },
@@ -27,8 +25,6 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <h2>{{ message2 }}</h2>
     <div>
       <h2>{{ user.name }}</h2>
       <router-link to="/favorites">FavoritesIndex</router-link>

@@ -1,23 +1,122 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
+<html lang="en">
+
+<head>
+
+    <!-- metas -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
+    <meta name="author" content="Chitrakoot Web" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="Finders Directory Listing Template" />
+    <meta name="description" content="Finders - Directory Listing Template" />
+
+    <!-- title  -->
+    <title>Finders - Directory Listing Template</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="img/logos/favicon.png" />
+    <link rel="apple-touch-icon" href="img/logos/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="img/logos/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/logos/apple-touch-icon-114x114.png" />
+
+    <!-- plugins -->
+    <link rel="stylesheet" href="css/plugins.css" />
+
+    <!-- search css -->
+    <link rel="stylesheet" href="search/search.css" />
+
+    <!-- core style css -->
+    <link href="css/styles.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <!-- start page loading -->
+    <div id="preloader">
+        <div class="row loader">
+            <div class="loader-icon"></div>
+        </div>
+    </div>
+    <!-- end page loading -->
+
+    <div id="app"></div>
+
+    <!-- all js include start -->
+
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+
+    <!-- modernizr js -->
+    <script src="/js/modernizr.js"></script>
+
+    <!-- bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Serch -->
+    <script src="search/search.js"></script>
+
+    <!-- navigation -->
+    <script src="/js/nav-menu.js"></script>
+
+    <!-- tab -->
+    <script src="/js/easy.responsive.tabs.js"></script>
+
+    <!-- owl carousel -->
+    <script src="/js/owl.carousel.js"></script>
+
+    <!-- jquery.counterup.min -->
+    <script src="/js/jquery.counterup.min.js"></script>
+
+    <!-- stellar js -->
+    <script src="/js/jquery.stellar.min.js"></script>
+
+    <!-- waypoints js -->
+    <script src="/js/waypoints.min.js"></script>
+
+    <!-- countdown js -->
+    <script src="/js/countdown.js"></script>
+
+    <!-- animated js -->
+    <script src="/js/animated-headline.js"></script>
+
+    <!-- range slider -->
+    <script src="/js/ion.rangeSlider.min.js"></script>
+
+    <!-- datepicker -->
+    <script src="/js/datepicker.min.js"></script>
+
+    <!-- jquery validation -->
+    <script src="/js/jquery.validate.min.js"></script>
+
+    <!-- jquery wizard -->
+    <script src="/js/jquery.bootstrap.wizard.min.js"></script>
+
+    <!-- form-wizard -->
+    <script src="/js/form-wizard.js"></script>
+
+    <!--  clipboard js -->
+    <script src="/js/clipboard.min.js"></script>
+
+    <!--  prism js -->
+    <script src="/js/prism.js"></script>
+
+    <!-- custom scripts -->
+    <script src="/js/main.js"></script>
+
+    <!-- all js include end -->
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <!-- End Leaflet-->
+    <!-- LightGallery -->
     <link type="text/css" rel="stylesheet" href="css/lightgallery.css" />
     <link type="text/css" rel="stylesheet" href="css/lg-zoom.css" />
     <link type="text/css" rel="stylesheet" href="css/lg-thumbnail.css" />
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <!-- End LightGallery -->
+    
+
+</body>
+
 </html>

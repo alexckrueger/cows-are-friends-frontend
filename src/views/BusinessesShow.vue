@@ -17,8 +17,6 @@ export default {
     return {
       isLoggedIn: !!localStorage.jwt,
       user_id: localStorage.user_id,
-      message: "Cows are Friends.tm",
-      message2: "BusinessesShow",
       business: [],
       favorited: false,
       favorited_id: 0,
@@ -108,7 +106,6 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
     <router-link to="/">Back to search</router-link>
     <h1>{{ business.name }}</h1>
     <div v-if="business.photos">

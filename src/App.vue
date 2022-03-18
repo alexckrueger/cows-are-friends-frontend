@@ -1,36 +1,43 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link>
-    <router-link v-if="!isLoggedIn" to="/login">Login</router-link>
-    <router-link v-if="isLoggedIn" to="/logout">Logout</router-link>
-    <router-link v-if="!isLoggedIn" to="/signup">Signup</router-link>
-    <router-link v-if="isLoggedIn" to="/users/me">My Profile</router-link>
+    <!-- start header section -->
+    <header>
+      <div class="navbar-default">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <div class="menu_area">
+                <nav class="navbar navbar-expand-lg navbar-light no-padding">
+                  <div class="navbar-header navbar-header-custom">
+                    <!-- start logo -->
+                    <router-link to="/">Cows Are Friends</router-link>
+                    <!-- end logo -->
+                  </div>
+
+                  <div class="navbar-toggler"></div>
+
+                  <!-- start menu area -->
+                  <ul class="navbar-nav ml-auto" id="nav" style="display: none">
+                    <li><router-link to="/">Home</router-link></li>
+                    <li><router-link v-if="!isLoggedIn" to="/login">Login</router-link></li>
+                    <li><router-link v-if="isLoggedIn" to="/logout">Logout</router-link></li>
+                    <li><router-link v-if="!isLoggedIn" to="/signup">Signup</router-link></li>
+                    <li><router-link v-if="isLoggedIn" to="/users/me">My Profile</router-link></li>
+                  </ul>
+                  <!-- end menu area -->
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
   </div>
   <router-view />
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>
 
 <script>
 export default {

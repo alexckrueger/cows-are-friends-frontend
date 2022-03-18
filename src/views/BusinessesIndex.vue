@@ -6,8 +6,6 @@ import L from "leaflet";
 export default {
   data: function () {
     return {
-      message: "Cows are Friends.tm",
-      message2: "BusinessesIndex",
       businesses: [],
       search: "",
       location: "",
@@ -98,8 +96,6 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <h2>{{ message2 }}</h2>
     <div>
       <input type="search" v-model="search" placeholder="Pizza, Cookies, Ice cream..." />
       <input type="search" v-model="location" placeholder="City, Zipcode, or Address" />
