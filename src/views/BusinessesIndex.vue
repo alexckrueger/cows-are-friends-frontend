@@ -9,7 +9,7 @@ export default {
       businesses: [],
       search: "",
       location: "",
-      center: [41.8781, -87.6298],
+      center: [41.8863, -87.6326],
       mapDiv: "",
       markerLayer: [],
       markers: [],
@@ -42,7 +42,7 @@ export default {
     },
     setupLeafletMap: function () {
       var mapboxKey = process.env.VUE_APP_MAPBOX_API_KEY;
-      this.mapDiv = L.map("mapContainer").setView(this.center, 13);
+      this.mapDiv = L.map("mapContainer").setView(this.center, 14);
       L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
         attribution:
           'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -76,10 +76,18 @@ export default {
       } else return "star";
     },
     setView: function () {
-      this.mapDiv.setView(this.center, 13);
+      this.mapDiv.setView(this.center, 14);
     },
-    // ratingIcon: function (rating) {},
-    // Have this return checkmark/question/red x depending on menu label buttons
+    ratingIcon: function (rating) {
+      var icon = require("/src/assets/Question Mark.png");
+      if (rating > 0.49) {
+        icon = require("/src/assets/checkmark.png");
+      } else if (rating < -0.49) {
+        icon = require("/src/assets/Red X.png");
+      }
+      return icon;
+    },
+
     setIcon: function (business) {
       var icon = require("/src/assets/vegan_icon.png");
       if (business.overall_rating) {
@@ -97,6 +105,13 @@ export default {
         popupAnchor: [0, -26],
       });
       return myIcon;
+    },
+    combineCategories: function (categories) {
+      var categoryArray = [];
+      categories.forEach((category) => {
+        categoryArray.push(category["title"]);
+      });
+      return categoryArray.join(", ");
     },
   },
   mounted: function () {
@@ -124,6 +139,8 @@ export default {
           <div class="padding-40px-all border-bottom">
             <div class="row">
               <div class="form-group col-md-6 col-lg-12 col-xl-6">
+                <h1>Cows Are Friends</h1>
+                <h6>Restaurant reviews made for Vegetarians and Vegans</h6>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text padding-10px-tb bg-white">Find</div>
@@ -144,7 +161,7 @@ export default {
                   <input
                     type="text"
                     class="form-control padding-10px-tb"
-                    placeholder="Location"
+                    placeholder="ZIP code, City, etc..."
                     required=""
                     v-model="location"
                   />
@@ -175,13 +192,11 @@ export default {
                     </div>
                     <div class="col-md-7 col-lg-8">
                       <div class="card-body no-padding-tb">
-                        <!-- # of stars = rating -->
-                        <div class="star">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
+                        <!-- stars -->
+                        <div v-if="business.review_count > 0">
+                          <span class="star" v-for="star in Math.round(business.overall_rating)" :key="star">
+                            <i class="fa fa-star"></i>
+                          </span>
                         </div>
                         <!-- end stars -->
                         <div class="d-flex justify-content-between align-items-center">
@@ -189,25 +204,34 @@ export default {
                             <a href="listing-details.html" class="text-extra-dark-gray">{{ business.name }}</a>
                           </h5>
                         </div>
+                        <!-- Everything Reviews -->
                         <div v-if="business.review_count > 0">
                           <span>
                             {{ business.overall_rating }} {{ pluralizeStar(business) }} ({{ business.review_count }}
                             {{ pluralizeReview(business) }})
                           </span>
-                          <p class="sm-margin-10px-top">
-                            Vegetarian: {{ business.menu_vegetarian_labels }}, Vegan: {{ business.menu_vegan_labels }},
-                            Vegan:
-                            {{ business.menu_gluten_free_labels }}
-                          </p>
+                          <div>{{ combineCategories(business.categories) }}</div>
+                          <div class="sm-margin-10px-top">
+                            <div>
+                              Vegetarian Labels
+                              <img :src="ratingIcon(business.menu_vegetarian_labels)" alt="" />
+                            </div>
+                            <div>
+                              Vegan Labels
+                              <img :src="ratingIcon(business.menu_vegan_labels)" alt="" />
+                            </div>
+                            <div>
+                              Gluten-Free Labels
+                              <img :src="ratingIcon(business.menu_gluten_free_labels)" alt="" />
+                            </div>
+                          </div>
                         </div>
+                        <!-- End everything Reviews -->
                         <div v-else>
+                          <div>{{ combineCategories(business.categories) }}</div>
                           <p>Be the first to review this restaurant!</p>
                         </div>
-                        <div v-for="category in business.categories" v-bind:key="category">
-                          <li>
-                            {{ category["title"] }}
-                          </li>
-                        </div>
+
                         <router-link class="butn alt-font" :to="`/businesses/${business.id}`">See more</router-link>
                       </div>
                     </div>
@@ -219,7 +243,7 @@ export default {
         </div>
         <!-- Map -->
         <div class="col-lg-6 order-1 order-lg-2">
-          <div id="mapContainer"></div>
+          <div class="map-listing" id="mapContainer"></div>
         </div>
         <!-- end Map -->
       </div>
@@ -230,6 +254,6 @@ export default {
 
 <style>
 #mapContainer {
-  height: 60vw;
+  height: 100%;
 }
 </style>

@@ -2,7 +2,7 @@
   <div id="nav">
     <!-- start header section -->
     <header>
-      <div class="navbar-default">
+      <div class="navbar-default opaque">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-12">
@@ -45,6 +45,9 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
+}
+.opaque {
+  background-color: white;
 }
 </style>
 
