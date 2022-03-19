@@ -10,7 +10,10 @@
                 <nav class="navbar navbar-expand-lg navbar-light no-padding">
                   <div class="navbar-header navbar-header-custom">
                     <!-- start logo -->
-                    <router-link to="/">Cows Are Friends</router-link>
+                    <h6 class="caftitle">
+                      <img class="caficon" :src="require(`/src/assets/cowsarefriends.png`)" alt="" />
+                      <router-link to="/">Cows Are Friends</router-link>
+                    </h6>
                     <!-- end logo -->
                   </div>
 
@@ -37,7 +40,13 @@
   <router-view />
 </template>
 
-<style></style>
+<style>
+.caficon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+</style>
 
 <script>
 export default {

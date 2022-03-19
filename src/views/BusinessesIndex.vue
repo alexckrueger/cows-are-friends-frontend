@@ -11,11 +11,6 @@ export default {
       location: "",
       center: [41.8781, -87.6298],
       mapDiv: "",
-      myIcon: L.icon({
-        iconUrl: "https://cdn-icons-png.flaticon.com/512/723/723633.png",
-        iconSize: [30, 40],
-        popupAnchor: [0, -26],
-      }),
       markerLayer: [],
       markers: [],
       error: "",
@@ -28,7 +23,6 @@ export default {
   },
   methods: {
     searchBusinesses: function () {
-      this.businesses = [];
       this.error = "";
       axios
         .get(`/businesses?search=${this.search}&location=${this.location}`)
@@ -63,9 +57,9 @@ export default {
       this.markers = [];
       this.businesses.forEach((business) => {
         this.markers.push(
-          L.marker([business.coordinates.latitude, business.coordinates.longitude], { icon: this.myIcon }).bindPopup(
-            business.name
-          )
+          L.marker([business.coordinates.latitude, business.coordinates.longitude], {
+            icon: this.setIcon(business),
+          }).bindPopup(business.name)
         );
       });
       this.markerLayer = L.layerGroup(this.markers);
@@ -76,11 +70,34 @@ export default {
         return "reviews";
       } else return "review";
     },
+    pluralizeStar: function (business) {
+      if (business.overall_rating > 1) {
+        return "stars";
+      } else return "star";
+    },
     setView: function () {
       this.mapDiv.setView(this.center, 13);
     },
-    // ratingIcon: function (rating) {
-    // } Have this return checkmark/question/red x depending on menu label buttons
+    // ratingIcon: function (rating) {},
+    // Have this return checkmark/question/red x depending on menu label buttons
+    setIcon: function (business) {
+      var icon = require("/src/assets/vegan_icon.png");
+      if (business.overall_rating) {
+        if (business.overall_rating > 3) {
+          icon = require("/src/assets/green cow.png");
+        } else {
+          icon = require("/src/assets/red cow.png");
+        }
+      } else {
+        icon = require("/src/assets/yellow cow.png");
+      }
+      var myIcon = L.icon({
+        iconUrl: icon,
+        iconSize: [32, 32],
+        popupAnchor: [0, -26],
+      });
+      return myIcon;
+    },
   },
   mounted: function () {
     this.setupLeafletMap();
@@ -114,7 +131,7 @@ export default {
                   <input
                     type="text"
                     class="form-control padding-10px-tb"
-                    placeholder="What are you looking for?"
+                    placeholder="Pizza, Ice Cream, Walnuts..."
                     v-model="search"
                   />
                 </div>
@@ -174,7 +191,7 @@ export default {
                         </div>
                         <div v-if="business.review_count > 0">
                           <span>
-                            {{ business.overall_rating }}/5 Rating ({{ business.review_count }}
+                            {{ business.overall_rating }} {{ pluralizeStar(business) }} ({{ business.review_count }}
                             {{ pluralizeReview(business) }})
                           </span>
                           <p class="sm-margin-10px-top">
@@ -208,36 +225,6 @@ export default {
       </div>
     </div>
     <!-- end map list section -->
-    <div>
-      <input type="search" v-model="search" placeholder="Pizza, Cookies, Ice cream..." />
-      <input type="search" v-model="location" placeholder="City, Zipcode, or Address" />
-      <button v-on:click="searchBusinesses">Search</button>
-      <p v-if="error">{{ error }}</p>
-    </div>
-    <div id="mapContainer"></div>
-    <div v-for="business in businesses" v-bind:key="business.id">
-      <h2>{{ business.name }}</h2>
-      <div v-if="business.review_count > 0">
-        <p>
-          Overall Rating: {{ business.overall_rating }} ({{ business.review_count }} {{ pluralizeReview(business) }})
-        </p>
-        <p>Veggie Options Rating: {{ business.veggie_options_rating }}</p>
-        <p>Menu labels:</p>
-        <div>
-          Vegetarian: {{ business.menu_vegetarian_labels }}, Vegan: {{ business.menu_vegan_labels }}, Vegan:
-          {{ business.menu_gluten_free_labels }}
-        </div>
-      </div>
-      <div v-else>
-        <p>Be the first to review this restaurant!</p>
-      </div>
-      <div v-for="category in business.categories" v-bind:key="category">
-        {{ category["title"] }}
-      </div>
-      <img :src="business.image_url" alt="" />
-      <br />
-      <button v-on:click="this.$router.push(`/businesses/${business.id}`)">to business show page</button>
-    </div>
   </div>
 </template>
 
