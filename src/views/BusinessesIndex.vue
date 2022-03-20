@@ -138,7 +138,7 @@ export default {
           <!-- Add search here -->
           <div class="padding-40px-all border-bottom">
             <div class="row">
-              <div class="form-group col-md-6 col-lg-12 col-xl-6">
+              <div class="form-group col-lg-12">
                 <h1>Cows Are Friends</h1>
                 <h6>Restaurant reviews made for Vegetarians and Vegans</h6>
                 <div class="input-group">
@@ -153,7 +153,7 @@ export default {
                   />
                 </div>
               </div>
-              <div class="form-group col-md-6 col-lg-12 col-xl-6">
+              <div class="form-group col-lg-12">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text padding-10px-tb bg-white">Near</div>

@@ -31,20 +31,64 @@ export default {
 
 <template>
   <div class="login">
-    <form v-on:submit.prevent="submit()">
-      <h1>Login</h1>
-      <ul>
-        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-      </ul>
-      <div>
-        <label>Email:</label>
-        <input type="email" v-model="newSessionParams.email" />
+    <!-- start login table -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 center-col">
+            <div class="padding-40px-all sm-padding-25px-all shadow border-radius-4">
+              <h3 class="text-center margin-40px-bottom">Login</h3>
+              <form v-on:submit.prevent="submit()">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul>
+                      <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+                    </ul>
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="username"
+                        id="username"
+                        required="required"
+                        placeholder="User Name"
+                        maxlength="70"
+                        v-model="newSessionParams.email"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        type="password"
+                        name="password"
+                        id="password"
+                        required="required"
+                        placeholder="Password"
+                        maxlength="70"
+                        v-model="newSessionParams.password"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12 margin-25px-top">
+                  <button type="submit" value="Submit" class="butn btn-block">Login</button>
+                </div>
+
+                <div class="col-md-12 text-center margin-25px-top">
+                  <span>
+                    Don't have an account yet?
+                    <router-link to="/signup">Signup</router-link>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" v-model="newSessionParams.password" />
-      </div>
-      <input type="submit" value="Submit" />
-    </form>
+    </section>
+    <!-- end login table -->
   </div>
 </template>
