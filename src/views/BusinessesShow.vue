@@ -159,15 +159,15 @@ export default {
                   <h6>Menu labels:</h6>
                   <div class="sm-margin-10px-top">
                     <div>
-                      Vegetarian Labels
+                      Vegetarian
                       <img :src="ratingIcon(business.menu_vegetarian_labels)" alt="" />
                     </div>
                     <div>
-                      Vegan Labels
+                      Vegan
                       <img :src="ratingIcon(business.menu_vegan_labels)" alt="" />
                     </div>
                     <div>
-                      Gluten-Free Labels
+                      Gluten-Free
                       <img :src="ratingIcon(business.menu_gluten_free_labels)" alt="" />
                     </div>
                   </div>
