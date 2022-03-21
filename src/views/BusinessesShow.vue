@@ -126,8 +126,8 @@ export default {
     <section>
       <div class="container">
         <div class="row">
-          <!-- Header -->
           <div class="col-lg-8 margin-50px-bottom">
+            <!-- Header -->
             <div class="listing-detail margin-50px-bottom sm-margin-35px-bottom">
               <h3 class="font-weight-500">{{ business.name }}</h3>
               <div>
@@ -260,11 +260,12 @@ export default {
         </div>
         <!-- Reviews -->
         <div class="margin-60px-bottom">
-          <h3 class="border-bottom padding-20px-bottom">Reviews ({{ business.reviews.length }})</h3>
+          <h2 class="border-bottom padding-20px-bottom">Reviews ({{ business.reviews.length }})</h2>
           <div class="comments-area">
             <div class="comment-box" v-for="review in business.reviews" v-bind:key="review.id">
               <div class="row">
                 <div class="author-thumb col-xs-4 col-sm-3 col-md-2">
+                  <h4>{{ review.user.name }}</h4>
                   <img
                     :src="review.user.image_url"
                     alt="/src/assets/cowsarefriends.png"
@@ -272,7 +273,6 @@ export default {
                   />
                 </div>
                 <div class="comment-info col">
-                  <h6>{{ review.user.name }}</h6>
                   <div class="row margin-10px-bottom">
                     <div class="col-3">
                       <div class="bg-theme padding-30px-tb text-center border-radius-4">
