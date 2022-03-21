@@ -29,15 +29,59 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ user.name }} Favorites</h1>
-    <div v-for="favorite in favorites" v-bind:key="favorite.id">
-      <h3>{{ favorite.business.name }}</h3>
-      <p>{{ favorite.business.categories.join(", ") }}</p>
-      <img :src="favorite.business.image_url" alt="" />
-      <br />
-      <router-link :to="`/businesses/${favorite.business.id}`">To Restaurant Page</router-link>
-    </div>
+    <!-- start page title section -->
+    <section
+      class="page-title-section bg-img cover-background"
+      data-overlay-dark="7"
+      data-background="/src/assets/purple-diagonal-striped.jpeg"
+    >
+      <div class="container">
+        <h1>My Favorites</h1>
+      </div>
+    </section>
+    <!-- end page title section -->
+
+    <!-- start favorites section -->
+    <section>
+      <div class="container">
+        <router-link class="butn margin-15px-bottom" :to="`/users/me`">Back to My Profile</router-link>
+        <div class="row">
+          <!-- start favorites -->
+          <div
+            class="col-lg-4 col-md-6 col-sm-12 margin-30px-bottom"
+            v-for="favorite in favorites"
+            v-bind:key="favorite.id"
+          >
+            <div class="card border-0 shadow h-100">
+              <a href="#">
+                <img class="card-img-top rounded card-img" :src="favorite.business.image_url" alt="" />
+              </a>
+              <div class="card-body padding-30px-all">
+                <h5 class="card-title font-size22 font-weight-500 magin-20px-bottom">
+                  <a href="blog-details.html" class="text-extra-dark-gray">{{ favorite.business.name }}</a>
+                </h5>
+                <div class="margin-10px-bottom">
+                  <span class="font-size12 margin-15px-right text-extra-dark-gray">
+                    {{ favorite.business.categories.join(", ") }}
+                  </span>
+                </div>
+                <p class="no-margin-bottom">
+                  <router-link :to="`/businesses/${favorite.business.id}`">To Restaurant Page</router-link>
+                  <i class="fas fa-arrow-right"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- end favorites -->
+        </div>
+      </div>
+    </section>
+    <!-- end favorites section -->
   </div>
 </template>
 
-<style></style>
+<style>
+.card-img {
+  max-height: 458px;
+}
+</style>
