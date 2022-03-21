@@ -86,7 +86,7 @@ export default {
     onBeforeSlide: () => {
       console.log("calling before slide");
     },
-    testDayjs: function (created_at) {
+    reviewDayjs: function (created_at) {
       return dayjs(created_at).toNow(true);
     },
     deleteReview: function (review) {
@@ -95,73 +95,227 @@ export default {
         this.$router.go();
       }
     },
-  },
-  watch: {
-    business() {
-      this.setupLeafletMap();
+    ratingSaying: function (rating) {
+      if (rating > 4) {
+        return "Wonderful!";
+      } else if (rating > 3) {
+        return "Good!";
+      } else {
+        return "Could be better...";
+      }
     },
+    ratingIcon: function (rating) {
+      var icon = require("/src/assets/Question Mark.png");
+      if (rating > 0.49) {
+        icon = require("/src/assets/checkmark.png");
+      } else if (rating < -0.49) {
+        icon = require("/src/assets/Red X.png");
+      }
+      return icon;
+    },
+  },
+  mounted: function () {
+    this.setupLeafletMap();
   },
 };
 </script>
 
 <template>
   <div class="home">
-    <router-link to="/">Back to search</router-link>
-    <h1>{{ business.name }}</h1>
-    <div v-if="business.photos">
-      <lightgallery :settings="{ speed: 500, plugins: plugins }" :onInit="onInit" :onBeforeSlide="onBeforeSlide">
-        <a data-lg-size="1406-1390" class="gallery-item" :data-src="`${business.photos[0]}`">
-          <img class="img-responsive" :src="`${business.photos[0]}`" />
-        </a>
-        <a v-if="business.photos[1]" data-lg-size="1406-1390" class="gallery-item" :data-src="`${business.photos[1]}`">
-          <img class="img-responsive" :src="`${business.photos[1]}`" />
-        </a>
-        <a v-if="business.photos[2]" data-lg-size="1406-1390" class="gallery-item" :data-src="`${business.photos[2]}`">
-          <img class="img-responsive" :src="`${business.photos[2]}`" />
-        </a>
-      </lightgallery>
-    </div>
+    <!-- start listing-details section -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <!-- Header -->
+          <div class="col-lg-8 margin-50px-bottom">
+            <div class="listing-detail margin-50px-bottom sm-margin-35px-bottom">
+              <h3 class="font-weight-500">{{ business.name }}</h3>
+              <div>
+                <ul class="bg-light-gray padding-20px-tb padding-30px-lr rounded">
+                  <li>
+                    <i class="fas fa-map-marked-alt margin-10px-right text-theme-color"></i>
+                    {{ display_address }}
+                  </li>
+                  <li>
+                    <i class="fa fa-phone margin-10px-right text-theme-color"></i>
+                    {{ business.display_phone }}
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-    <div id="smallMapContainer"></div>
-    <div v-if="business.review_count">
-      <p>overall_rating: {{ business.overall_rating }}</p>
-      <p>veggie_options_rating: {{ business.veggie_options_rating }}</p>
-      <p>Menu labels:</p>
-      <div>
-        Vegetarian: {{ business.menu_vegetarian_labels }}, Vegan: {{ business.menu_vegan_labels }}, Vegan:
-        {{ business.menu_gluten_free_labels }}
+            <!-- Rating -->
+            <div class="margin-50px-bottom sm-margin-35px-bottom">
+              <h5 class="font-size20 border-bottom padding-20px-bottom">Cows Are Friends Rating</h5>
+              <div class="row align-items-center" v-if="business.review_count">
+                <div class="col-lg-3 col-md-4">
+                  <div class="bg-theme padding-30px-tb text-center border-radius-4">
+                    <h5 class="font-size40 no-margin-bottom text-white">{{ business.overall_rating }}</h5>
+                    <h6 class="no-margin-bottom text-white font-size18">{{ ratingSaying(business.overall_rating) }}</h6>
+                  </div>
+                </div>
+                <div class="col-lg-9 col-md-8 mb-30">
+                  <h6>Veggie Options Rating: {{ business.veggie_options_rating }}</h6>
+                  <h6>Menu labels:</h6>
+                  <div class="sm-margin-10px-top">
+                    <div>
+                      Vegetarian Labels
+                      <img :src="ratingIcon(business.menu_vegetarian_labels)" alt="" />
+                    </div>
+                    <div>
+                      Vegan Labels
+                      <img :src="ratingIcon(business.menu_vegan_labels)" alt="" />
+                    </div>
+                    <div>
+                      Gluten-Free Labels
+                      <img :src="ratingIcon(business.menu_gluten_free_labels)" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center" v-else>
+                <div class="col-lg-3 col-md-4">
+                  <div class="bg-theme padding-30px-tb text-center border-radius-4">
+                    <h5 class="font-size40 no-margin-bottom text-white">?</h5>
+                  </div>
+                </div>
+                <div class="col-lg-9 col-md-8 mb-30">
+                  <h6>Be the first to review this restaurant!</h6>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery -->
+            <div class="margin-50px-bottom sm-margin-35px-bottom">
+              <h5 class="font-size20 border-bottom padding-20px-bottom">Gallery</h5>
+              <div class="row margin-30px-bottom">
+                <div class="col-6">
+                  <lightgallery
+                    :settings="{ speed: 500, plugins: plugins }"
+                    :onInit="onInit"
+                    :onBeforeSlide="onBeforeSlide"
+                  >
+                    <a data-lg-size="1406-1390" class="gallery-item" :data-src="`${business.photos[0]}`">
+                      <img class="img-responsive" :src="`${business.photos[0]}`" />
+                    </a>
+                  </lightgallery>
+                </div>
+                <div class="col-6">
+                  <lightgallery>
+                    <a
+                      v-if="business.photos[1]"
+                      data-lg-size="1406-1390"
+                      class="gallery-item"
+                      :data-src="`${business.photos[1]}`"
+                    >
+                      <img class="img-responsive" :src="`${business.photos[1]}`" />
+                    </a>
+                  </lightgallery>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Side Bar -->
+          <div class="col-lg-4">
+            <div class="side-bar">
+              <div class="widget">
+                <div id="smallMapContainer"></div>
+              </div>
+              <div class="widget">
+                <div class="widget-title margin-35px-bottom">
+                  <h3>Categories</h3>
+                </div>
+                <ul class="widget-list" v-for="category in categories" v-bind:key="category">
+                  <li>{{ category }}</li>
+                </ul>
+                <div>
+                  <div class="price-range"></div>
+                </div>
+              </div>
+              <div class="widget">
+                <div class="widget-title">
+                  <h3>More</h3>
+                </div>
+                <ul class="widget-list">
+                  <li>Yelp Rating: {{ business.rating }}</li>
+                  <li v-if="isLoggedIn">
+                    <button class="butn" v-if="!favorited" v-on:click="createFavorite()">
+                      Favorite this restaurant
+                    </button>
+                    <button class="butn" v-else v-on:click="deleteFavorite()">Unfavorite this restaurant</button>
+                  </li>
+                  <li>
+                    <button
+                      class="butn margin-30px-bottom"
+                      v-if="!business.reviewed"
+                      v-on:click="redirectToReview(business)"
+                    >
+                      Review this restaurant
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Reviews -->
+        <div class="margin-60px-bottom">
+          <h3 class="border-bottom padding-20px-bottom">Reviews ({{ business.reviews.length }})</h3>
+          <div class="comments-area">
+            <div class="comment-box" v-for="review in business.reviews" v-bind:key="review.id">
+              <div class="row">
+                <div class="author-thumb col-xs-4 col-sm-3 col-md-2">
+                  <img
+                    :src="review.user.image_url"
+                    alt="/src/assets/cowsarefriends.png"
+                    class="rounded-circle width-85 xs-width-100 avatar-picture"
+                  />
+                </div>
+                <div class="comment-info col">
+                  <h6>{{ review.user.name }}</h6>
+                  <div class="row margin-10px-bottom">
+                    <div class="col-3">
+                      <div class="bg-theme padding-30px-tb text-center border-radius-4">
+                        <h5 class="font-size40 no-margin-bottom text-white">{{ review.overall_rating }}</h5>
+                        <h6 class="no-margin-bottom text-white font-size14">
+                          Options Rating:
+                          {{ review.veggie_options_rating }}
+                        </h6>
+                      </div>
+                    </div>
+                    <div class="col">
+                      {{ review.comment }}
+                      <p v-if="review.recommended_dishes">
+                        <i>Recommended Dish(es): {{ review.recommended_dishes }}</i>
+                      </p>
+                    </div>
+                  </div>
+                  <lightgallery
+                    :settings="{ speed: 500, plugins: plugins }"
+                    :onInit="onInit"
+                    :onBeforeSlide="onBeforeSlide"
+                  >
+                    <a data-lg-size="1406-1390" class="gallery-item" :data-src="`${review.image_url}`">
+                      <img class="img-responsive review-picture" :src="`${review.image_url}`" />
+                    </a>
+                  </lightgallery>
+                  <p class="font-size12 margin-15px-right text-extra-dark-gray">
+                    reviewed {{ reviewDayjs(review.created_at) }} ago
+                  </p>
+                  <div>
+                    <button class="butn" v-if="user_id == review.user.id" v-on:click="deleteReview(review)">
+                      Delete Your Review
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <p>Be the first to review this restaurant!</p>
-    </div>
-    <p>Categories: {{ categories.join(", ") }}</p>
-    <p>{{ display_address }}</p>
-    <p>phone number: {{ business.display_phone }}</p>
-    <p>yelp rating: {{ business.rating }}</p>
-    <div v-if="isLoggedIn">
-      <p>Has user favorited? {{ favorited }}</p>
-      <p>Has user reviewed? {{ business.reviewed }}</p>
-      <button v-if="!favorited" v-on:click="createFavorite()">Favorite this restaurant</button>
-      <button v-else v-on:click="deleteFavorite()">Unfavorite this restaurant</button>
-      <button v-if="!business.reviewed" v-on:click="redirectToReview(business)">Review this restaurant</button>
-    </div>
-    <div v-for="review in business.reviews" v-bind:key="review.id">
-      <h3>REVIEW</h3>
-      <p>reviewer: {{ review.user.name }}</p>
-      <p>reviewed {{ testDayjs(review.created_at) }} ago</p>
-      <p>overall_rating: {{ review.overall_rating }}</p>
-      <p>Menu labels:</p>
-      <div>
-        Vegetarian: {{ review.menu_vegetarian_labels }}, Vegan: {{ review.menu_vegan_labels }}, Vegan:
-        {{ review.menu_gluten_free_labels }}
-      </div>
-      <p>veggie_options_rating: {{ review.veggie_options_rating }}</p>
-      <p v-if="review.recommended_dishes">recommended_dishes: {{ review.recommended_dishes }}</p>
-      <p>comment: {{ review.comment }}</p>
-      <img v-if="review.image_url" :src="review.image_url" />
-      <button v-if="user_id == review.user.id" v-on:click="deleteReview(review)">Delete Your Review</button>
-    </div>
+    </section>
+    <!-- end listing-details section -->
   </div>
 </template>
 
@@ -178,5 +332,13 @@ body {
 }
 .gallery-item {
   margin: 5px;
+}
+.avatar-picture {
+  width: 85px;
+  height: 100px;
+}
+.review-picture {
+  max-width: 400px;
+  max-height: 200px;
 }
 </style>

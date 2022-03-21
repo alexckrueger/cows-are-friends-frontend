@@ -87,7 +87,6 @@ export default {
       }
       return icon;
     },
-
     setIcon: function (business) {
       var icon = require("/src/assets/vegan_icon.png");
       if (business.overall_rating) {
@@ -201,7 +200,7 @@ export default {
                         <!-- end stars -->
                         <div class="d-flex justify-content-between align-items-center">
                           <h5 class="card-title no-margin-bottom font-size22">
-                            <a href="listing-details.html" class="text-extra-dark-gray">{{ business.name }}</a>
+                            {{ business.name }}
                           </h5>
                         </div>
                         <!-- Everything Reviews -->
