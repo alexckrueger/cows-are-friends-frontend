@@ -33,27 +33,53 @@ export default {
 
 <template>
   <div class="home">
-    <router-link to="/users/me">Back to your profile</router-link>
-    <div v-if="errors.length > 0">
-      <div v-for="error in errors" v-bind:key="error">
-        <ul>
-          <li>{{ error }}</li>
-        </ul>
+    <!-- start contact form -->
+    <section class="bg-light-gray contact-form">
+      <div class="container margin-30px-top">
+        <div class="row">
+          <div class="col-md-9 form-list center-col">
+            <div class="row">
+              <div class="col-md-12 margin-15px-bottom">
+                <router-link class="butn" :to="`/users/me`">Back to My Profile</router-link>
+              </div>
+              <div class="form-group col-md-12">
+                <input
+                  type="text"
+                  class="form-control no-margin-bottom padding-10px-tb"
+                  name="exampleInputName"
+                  id="exampleInputName"
+                  placeholder="Name"
+                />
+              </div>
+              <div class="form-group col-md-12">
+                <input
+                  type="text"
+                  class="form-control no-margin-bottom padding-10px-tb"
+                  name="exampleInputTitle"
+                  id="exampleInputTitle"
+                  placeholder="Image URL"
+                />
+              </div>
+              <div v-if="errors.length > 0" class="form-group col-md-12">
+                <div v-for="error in errors" v-bind:key="error">
+                  <ul>
+                    <li>{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <button v-on:click="updateUser()" class="butn"><span>Save Changes</span></button>
+              </div>
+              <div class="col-md-12 margin-15px-top">
+                <button v-on:click="deleteUser()" class="butn"><span>Delete Profile</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div>
-      <div>
-        <label>Name:</label>
-        <input type="text" v-model="updateUserParams.name" />
-      </div>
-      <div>
-        <label>Image URL:</label>
-        <input type="text" v-model="updateUserParams.image_url" />
-      </div>
-      <button v-on:click="updateUser()">Save Changes</button>
-      <br />
-      <button v-on:click="deleteUser()">Delete Profile</button>
-    </div>
+    </section>
+    <!-- end contact form -->
   </div>
 </template>
 
