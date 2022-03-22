@@ -27,7 +27,7 @@ export default {
 <template>
   <div class="signup">
     <!-- start register form -->
-    <section>
+    <section style="background-color: #e8d1ff">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 center-col">

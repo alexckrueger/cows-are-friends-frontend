@@ -342,13 +342,22 @@ export default {
                   rows="4"
                   required="required"
                   v-model="newReview.comment"
+                  style="background-color: #f1e3ff"
                 ></textarea>
               </div>
               <div class="col-md-12 form-group">
-                <input placeholder="Recommended Dish(es) (optional)" v-model="newReview.recommended_dishes" />
+                <input
+                  placeholder="Recommended Dish(es) (optional)"
+                  v-model="newReview.recommended_dishes"
+                  style="background-color: #f1e3ff"
+                />
               </div>
               <div class="col-md-12 form-group">
-                <input placeholder="Image URL (optional)" v-model="newReview.image_url" />
+                <input
+                  placeholder="Image URL (optional)"
+                  v-model="newReview.image_url"
+                  style="background-color: #f1e3ff"
+                />
               </div>
               <div v-if="errors">
                 <ul v-for="error in errors" v-bind:key="error">

@@ -53,7 +53,7 @@ export default {
 </script>
 
 <template>
-  <div class="home">
+  <div class="home" style="background-color: #e8d1ff">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-7 order-2 order-md-1 order-lg-1">
@@ -350,13 +350,22 @@ export default {
                   rows="4"
                   required="required"
                   v-model="review.comment"
+                  style="background-color: #f1e3ff"
                 ></textarea>
               </div>
               <div class="col-md-12 form-group">
-                <input placeholder="Recommended Dish(es) (optional)" v-model="review.recommended_dishes" />
+                <input
+                  placeholder="Recommended Dish(es) (optional)"
+                  v-model="review.recommended_dishes"
+                  style="background-color: #f1e3ff"
+                />
               </div>
               <div class="col-md-12 form-group">
-                <input placeholder="Image URL (optional)" v-model="review.image_url" />
+                <input
+                  placeholder="Image URL (optional)"
+                  v-model="review.image_url"
+                  style="background-color: #f1e3ff"
+                />
               </div>
               <div v-if="errors">
                 <ul v-for="error in errors" v-bind:key="error">

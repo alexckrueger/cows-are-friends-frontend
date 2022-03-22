@@ -129,7 +129,7 @@ export default {
 </script>
 
 <template>
-  <div class="home">
+  <div class="businessesindex">
     <!-- start map list section -->
     <div class="container-fluid no-padding">
       <div class="row no-gutters">
@@ -142,20 +142,21 @@ export default {
                 <h6>Restaurant reviews made for Vegetarians and Vegans</h6>
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <div class="input-group-text padding-10px-tb bg-white">Find</div>
+                    <div class="input-group-text padding-10px-tb" style="background-color: #f1e3ff">Find</div>
                   </div>
                   <input
                     type="text"
                     class="form-control padding-10px-tb"
                     placeholder="Pizza, Ice Cream, Walnuts..."
                     v-model="search"
+                    style="background-color: #f1e3ff"
                   />
                 </div>
               </div>
               <div class="form-group col-lg-12">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <div class="input-group-text padding-10px-tb bg-white">Near</div>
+                    <div class="input-group-text padding-10px-tb" style="background-color: #f1e3ff">Near</div>
                   </div>
                   <input
                     type="text"
@@ -163,6 +164,7 @@ export default {
                     placeholder="ZIP code, City, etc..."
                     required=""
                     v-model="location"
+                    style="background-color: #f1e3ff"
                   />
                 </div>
               </div>
@@ -254,5 +256,8 @@ export default {
 <style>
 #mapContainer {
   height: 100%;
+}
+div {
+  background-color: #e8d1ff;
 }
 </style>

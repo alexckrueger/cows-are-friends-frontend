@@ -32,7 +32,7 @@ export default {
 <template>
   <div class="login">
     <!-- start login table -->
-    <section>
+    <section style="background-color: #e8d1ff">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 center-col">

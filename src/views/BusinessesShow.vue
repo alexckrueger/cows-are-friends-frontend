@@ -120,7 +120,7 @@ export default {
 <template>
   <div class="home">
     <!-- start listing-details section -->
-    <section>
+    <section style="background-color: #e8d1ff">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 margin-50px-bottom">
@@ -128,7 +128,7 @@ export default {
             <div class="listing-detail margin-50px-bottom sm-margin-35px-bottom">
               <h3 class="font-weight-500">{{ business.name }}</h3>
               <div>
-                <ul class="bg-light-gray padding-20px-tb padding-30px-lr rounded">
+                <ul class="padding-20px-tb padding-30px-lr rounded" style="background-color: #f1e3ff">
                   <li>
                     <i class="fas fa-map-marked-alt margin-10px-right text-theme-color"></i>
                     {{ display_address }}
@@ -338,5 +338,8 @@ body {
 .review-picture {
   max-width: 400px;
   max-height: 200px;
+}
+div {
+  background-color: #e8d1ff;
 }
 </style>

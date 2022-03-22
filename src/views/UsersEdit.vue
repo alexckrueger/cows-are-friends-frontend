@@ -35,7 +35,7 @@ export default {
 <template>
   <div class="home">
     <!-- start contact form -->
-    <section class="bg-light-gray contact-form">
+    <section class="bg-light-gray contact-form" style="background-color: #e8d1ff">
       <div class="container margin-30px-top">
         <div class="row">
           <div class="col-md-9 form-list center-col">
@@ -53,6 +53,7 @@ export default {
                   name="exampleInputName"
                   id="exampleInputName"
                   placeholder="Name"
+                  style="background-color: #f1e3ff"
                 />
               </div>
               <div class="form-group col-md-12">
@@ -62,6 +63,7 @@ export default {
                   name="exampleInputTitle"
                   id="exampleInputTitle"
                   placeholder="Image URL"
+                  style="background-color: #f1e3ff"
                 />
               </div>
               <div v-if="errors.length > 0" class="form-group col-md-12">

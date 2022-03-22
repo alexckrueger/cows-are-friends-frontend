@@ -26,19 +26,15 @@ export default {
 <template>
   <div class="home">
     <!-- start page title section -->
-    <section
-      class="page-title-section bg-img cover-background"
-      data-overlay-dark="7"
-      data-background="/src/assets/purple-diagonal-striped.jpeg"
-    >
+    <section class="page-title-section bg-img cover-background" style="background-color: #e8d1ff">
       <div class="container">
-        <h1>My Profile</h1>
+        <h1 style="color: #1a1a1a">My Profile</h1>
       </div>
     </section>
     <!-- end page title section -->
 
     <!-- start profile section -->
-    <section>
+    <section style="background-color: #e8d1ff">
       <div class="container">
         <div class="row align-items-center margin-80px-bottom xs-margin-40px-bottom">
           <div class="col-md-5 xs-margin-20px-bottom">
@@ -59,26 +55,20 @@ export default {
               </p>
               <div>
                 <router-link to="/favorites" class="butn margin-10px-bottom">
-                  <div>
-                    My Favorites
-                    <i class="fas fa-arrow-right"></i>
-                  </div>
+                  My Favorites
+                  <i class="fas fa-arrow-right"></i>
                 </router-link>
               </div>
               <div>
                 <router-link to="/reviews" class="butn margin-10px-bottom">
-                  <div>
-                    My Reviews
-                    <i class="fas fa-arrow-right"></i>
-                  </div>
+                  My Reviews
+                  <i class="fas fa-arrow-right"></i>
                 </router-link>
               </div>
               <div>
                 <router-link to="/users/me/edit" class="butn margin-10px-bottom">
-                  <div>
-                    Edit Profile
-                    <i class="fas fa-arrow-right"></i>
-                  </div>
+                  Edit Profile
+                  <i class="fas fa-arrow-right"></i>
                 </router-link>
               </div>
             </div>

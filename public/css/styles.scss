@@ -25,12 +25,12 @@
     
 ---------------------------------- */
 
-$PrimaryColor: #2196f3;
-$PrimaryRgbColor: rgb(33, 150, 243);
+$PrimaryColor: #2ab518;
+$PrimaryRgbColor: rgb(42, 181, 24);
 
 $desk-lg-screen: 1200px;
 $desk-md-screen: 1199px;
-$desk-sm-screen: 992px; 
+$desk-sm-screen: 992px;
 $desk-xs-screen: 991px;
 $tablet-sm-screen: 768px;
 $tablet-xs-screen: 767px;
@@ -50,7 +50,7 @@ $mobile-xs-screen: 320px;
   width: 100%;
   height: 100%;
   overflow: visible;
-  background: #fff;
+  background: #e8d1ff;
   display: table;
   text-align: center;
 }
@@ -67,7 +67,7 @@ $mobile-xs-screen: 320px;
   width: 80px;
   height: 80px;
   border: 5px solid $PrimaryColor;
-  border-right-color: #eee;
+  border-right-color: #e8d1ff;
   border-radius: 50%;
   position: relative;
   animation: loader-rotate 1s linear infinite;
@@ -86,7 +86,8 @@ $mobile-xs-screen: 320px;
 
 /* theme color and basic options */
 a {
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: $PrimaryColor;
     text-decoration: none;
   }
@@ -134,8 +135,8 @@ a {
   line-height: 30px;
   z-index: 9999;
   outline: 0;
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
 
   i {
@@ -176,14 +177,16 @@ a {
   transition: all linear 300ms;
   border: none;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: #fff;
     background: #232323;
   }
 }
 
 a.butn {
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: #fff;
     background: #232323;
   }
@@ -206,7 +209,8 @@ a.butn {
 }
 
 a.butn.white {
-  &:hover, &:active {
+  &:hover,
+  &:active {
     color: #fff;
     background: #232323;
   }
@@ -322,7 +326,8 @@ a.butn.white {
 }
 
 input {
-  &[type=checkbox], &[type=radio] {
+  &[type="checkbox"],
+  &[type="radio"] {
     margin-top: 0.5rem;
   }
 }
@@ -335,7 +340,7 @@ label {
   margin-bottom: 0;
 
   &.error {
-    color: #EC5E69;
+    color: #ec5e69;
     font-weight: 500;
     display: inline-block;
     font-size: 12px;
@@ -344,7 +349,7 @@ label {
 
 .label {
   &.label-default {
-    background: #F1F1F1;
+    background: #f1f1f1;
     color: #526069;
   }
 
@@ -353,25 +358,25 @@ label {
   }
 
   &.label-success {
-    background: #63CB89;
+    background: #63cb89;
   }
 
   &.label-info {
-    background: #5893DF;
+    background: #5893df;
   }
 
   &.label-warning {
-    background: #F1C205;
+    background: #f1c205;
   }
 
   &.label-danger {
-    background: #EC5E69;
+    background: #ec5e69;
   }
 }
 
-
 input {
-  &[type=checkbox], &[type=radio] {
+  &[type="checkbox"],
+  &[type="radio"] {
     width: auto;
     margin-bottom: 0;
   }
@@ -379,7 +384,7 @@ input {
 
 .star i {
   margin-right: 0;
-  font-size: .625rem;
+  font-size: 0.625rem;
   color: $PrimaryColor;
 }
 
@@ -387,7 +392,8 @@ input {
     Top header and Navigation
 ====================================== */
 .navbar-nav {
-  li.current > a, > li.active > a {
+  li.current > a,
+  > li.active > a {
     color: $PrimaryColor;
   }
 }
@@ -398,12 +404,15 @@ input {
 
 @media screen and (min-width: $desk-sm-screen) {
   .header-style {
-    .navbar-nav li.active > a, .navbar ul ul li.active > a, .navbar-nav li.current > a {
+    .navbar-nav li.active > a,
+    .navbar ul ul li.active > a,
+    .navbar-nav li.current > a {
       color: $PrimaryColor;
     }
 
     .navbar > ul > li {
-      &.active > a:after, &.current > a:after {
+      &.active > a:after,
+      &.current > a:after {
         border-color: transparent $PrimaryColor $PrimaryColor transparent;
       }
     }
@@ -442,7 +451,6 @@ input {
   position: relative;
 
   .header-text {
-
     h1 {
       font-size: 40px;
       color: #fff;
@@ -455,11 +463,10 @@ input {
 }
 
 .line-banner {
-
   .searchs ul li {
     display: inline-block;
     margin-right: 10px;
-    
+
     a {
       display: inline-block;
       padding: 3px 20px;
@@ -483,7 +490,6 @@ input {
 
 @media screen and (max-width: $desk-xs-screen) {
   .line-banner .header-text {
-    
     h1 {
       font-size: 42px;
       line-height: 48px;
@@ -542,11 +548,11 @@ input {
       }
 
       &:after {
-        content: '\f105';
+        content: "\f105";
         font-weight: 700;
         vertical-align: middle;
         color: #fff;
-        font-family: Font Awesome\ 5 Free;
+        font-family: Font awesome\5 Free;
         padding: 0 5px 0 10px;
       }
 
@@ -629,7 +635,7 @@ input {
   }
 
   p:before {
-    font-family: Font Awesome\ 5 Free;
+    font-family: Font awesome\5 Free;
     content: "\f10d";
     position: absolute;
     top: 40px;
@@ -661,11 +667,11 @@ input {
     right: 0;
     width: 55%;
     z-index: 1;
-    opacity: .05;
+    opacity: 0.05;
     font-size: 80px;
   }
 
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   position: relative;
   padding: 30px;
   height: 100%;
@@ -705,8 +711,8 @@ input {
     border: 1px solid #d5d5d5;
     -webkit-backface-visibility: visible;
     border-radius: 30px;
-    transition-duration: .3s;
-    -webkit-transition-duration: .3s;
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
 
     &:hover {
       background: #d5d5d5;
@@ -720,8 +726,8 @@ input {
     height: 12px;
     background: $PrimaryColor;
     border-color: $PrimaryColor;
-    -webkit-transition-duration: .3s;
-    transition-duration: .3s;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
   }
 }
 
@@ -749,16 +755,16 @@ input {
     height: 40px;
     background: #fff !important;
     left: 0;
-    -webkit-transition: all .4s ease 0s;
-    transition: all .4s ease 0s;
+    -webkit-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
     -webkit-box-shadow: 0 5px 28px 0 rgba(50, 50, 50, 0.1);
     -moz-box-shadow: 0 5px 28px 0 rgba(50, 50, 50, 0.1);
     box-shadow: 0 5px 28px 0 rgba(50, 50, 50, 0.1);
   }
 
   .owl-next {
-    -webkit-transition: all .4s ease 0s;
-    transition: all .4s ease 0s;
+    -webkit-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
     -webkit-box-shadow: 0 5px 28px 0 rgba(50, 50, 50, 0.1);
     -moz-box-shadow: 0 5px 28px 0 rgba(50, 50, 50, 0.1);
     box-shadow: 0 5px 28px 0 rgba(50, 50, 50, 0.1);
@@ -768,7 +774,7 @@ input {
 .owl-theme .owl-nav {
   margin-top: 50px;
 
-  [class*='owl-'] {
+  [class*="owl-"] {
     color: #6f6f6f;
     line-height: 30px;
     border-radius: 0;
@@ -843,7 +849,8 @@ ul.resp-tabs-list {
   color: $PrimaryColor;
 }
 
-.resp-content-active, .resp-accordion-active {
+.resp-content-active,
+.resp-accordion-active {
   display: block;
 }
 
@@ -918,7 +925,7 @@ h2 {
     border: 1px solid $PrimaryColor !important;
     border-left: 4px solid $PrimaryColor !important;
     margin-bottom: 4px !important;
-    border-right: 1px #FFF solid !important;
+    border-right: 1px #fff solid !important;
   }
 }
 
@@ -998,7 +1005,7 @@ h2.resp-accordion {
 
   .resp-vtabs {
     .resp-tab-content {
-      border: 1px solid #C1C1C1;
+      border: 1px solid #c1c1c1;
     }
 
     .resp-tabs-container {
@@ -1023,18 +1030,19 @@ h2.resp-accordion {
   }
 }
 
-
 /* tabs */
-.tab-content > .tab-pane, .pill-content > .pill-pane {
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
   display: none;
 }
 
-.tab-content > .active, .pill-content > .active {
+.tab-content > .active,
+.pill-content > .active {
   display: block;
 }
 
 .nav-tabs.nav-justified {
-  border-bottom: 1px solid #E2E2E2;
+  border-bottom: 1px solid #e2e2e2;
 
   > {
     li > a {
@@ -1044,13 +1052,14 @@ h2.resp-accordion {
 
     .active > a {
       border-color: transparent;
-      border-bottom: 1px solid #1B2733;
-      color: #1B2733;
+      border-bottom: 1px solid #1b2733;
+      color: #1b2733;
 
-      &:focus, &:hover {
+      &:focus,
+      &:hover {
         border-color: transparent;
-        border-bottom: 1px solid #1B2733;
-        color: #1B2733;
+        border-bottom: 1px solid #1b2733;
+        color: #1b2733;
       }
     }
   }
@@ -1065,7 +1074,7 @@ h2.resp-accordion {
 ====================================== */
 .pricing {
   .type h6:after {
-    content: '';
+    content: "";
     width: 70px;
     height: 1px;
     background: $PrimaryColor;
@@ -1172,15 +1181,18 @@ h2.resp-accordion {
 }
 
 /* elements page */
-.summary ul li { margin-bottom: 8px; }
-.summary ul li:last-child { margin-bottom: 0; }
+.summary ul li {
+  margin-bottom: 8px;
+}
+.summary ul li:last-child {
+  margin-bottom: 0;
+}
 
 .copy-element .copy-clipboard {
   cursor: pointer;
   position: absolute;
   right: 20px;
 }
-
 
 .box-hover {
   min-height: 320px;
@@ -1280,9 +1292,9 @@ h2.resp-accordion {
   display: flex;
   height: 1rem;
   overflow: hidden;
-  font-size: .75rem;
+  font-size: 0.75rem;
   background-color: #e9ecef;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .progress-text {
@@ -1356,7 +1368,10 @@ ul.countdown li {
   }
 
   p {
-    &.timeRefDays, &.timeRefHours, &.timeRefMinutes, &.timeRefSeconds {
+    &.timeRefDays,
+    &.timeRefHours,
+    &.timeRefMinutes,
+    &.timeRefSeconds {
       font-size: 12px;
       font-weight: 500;
       margin: 0;
@@ -1381,15 +1396,13 @@ ul.countdown li {
 
 @media screen and (max-width: $mobile-sm-screen) {
   ul.countdown li {
-    margin-left: 5px; 
-    margin-right: 10px; 
+    margin-left: 5px;
+    margin-right: 10px;
 
     &:last-child {
-    margin-right: 10px;
+      margin-right: 10px;
+    }
   }
-
-  }
-
 }
 
 @media screen and (max-width: $mobile-xs-screen) {
@@ -1407,13 +1420,12 @@ ul.countdown li {
 
 /* side-bar */
 .side-bar {
-
   padding-left: 25px;
 
   h3 {
     &:after {
       position: absolute;
-      content: '';
+      content: "";
       background: $PrimaryColor;
       width: 25px;
       height: 1px;
@@ -1423,7 +1435,7 @@ ul.countdown li {
 
     &:before {
       position: absolute;
-      content: '';
+      content: "";
       background: $PrimaryColor;
       width: 40px;
       height: 1px;
@@ -1440,11 +1452,9 @@ ul.countdown li {
 }
 
 @media screen and (max-width: $desk-xs-screen) {
-
   .side-bar {
     padding-left: 0;
   }
-
 }
 
 /* progress bars */
@@ -1496,18 +1506,23 @@ ul.countdown li {
 }
 
 .irs--flat {
-  .irs-min, .irs-max {
+  .irs-min,
+  .irs-max {
     display: none;
   }
 
-  .irs-from, .irs-to, .irs-single {
+  .irs-from,
+  .irs-to,
+  .irs-single {
     background-color: #ededed;
     padding: 4px 8px;
     font-size: 12px;
     color: #232323;
   }
 
-  .irs-from:before, .irs-to:before, .irs-single:before {
+  .irs-from:before,
+  .irs-to:before,
+  .irs-single:before {
     border-top-color: #ededed;
   }
 
@@ -1557,7 +1572,7 @@ ul.countdown li {
           color: #232323;
 
           &:hover {
-            color: #F24259;
+            color: #f24259;
           }
         }
       }
@@ -1605,7 +1620,7 @@ ul.countdown li {
 
         &:hover {
           color: #fff;
-          border-color: #F24259;
+          border-color: #f24259;
         }
       }
     }
@@ -1641,7 +1656,6 @@ ul.countdown li {
     margin-bottom: 10px;
   }
 }
-
 
 /* blogs comments */
 .blogs {
@@ -1778,12 +1792,14 @@ ul.countdown li {
     color: #fff;
     cursor: default;
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
       color: #fff;
       background: #d4d4d4;
     }
   }
-} 
+}
 
 .blockquote {
   background: #f1f1f1;
@@ -1798,14 +1814,14 @@ ul.countdown li {
     font-weight: 500;
     line-height: 190%;
     color: #232323;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
   }
 
   h4 {
     font-size: 20px;
     font-weight: 400;
     color: #232323;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -1826,7 +1842,7 @@ ul.countdown li {
       margin-bottom: 20px;
 
       &:after {
-        content: '';
+        content: "";
         width: 30px;
         height: 1px;
         background: $PrimaryColor;
@@ -1836,7 +1852,7 @@ ul.countdown li {
       }
     }
 
-    .contact-info{
+    .contact-info {
       li {
         padding-left: 0;
       }
@@ -1912,7 +1928,7 @@ ul.countdown li {
   justify-content: space-between;
   margin-bottom: 8px;
   position: relative;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   z-index: 0;
 
   a {
@@ -1927,7 +1943,7 @@ ul.countdown li {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      content: '';
+      content: "";
       background-color: $PrimaryColor;
       display: inline-block;
       margin-right: 11px;
@@ -2049,7 +2065,7 @@ ul.countdown li {
     Footer
 ====================================== */
 footer {
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   font-size: 15px;
 
   p {
@@ -2064,7 +2080,7 @@ footer {
     position: relative;
 
     &:after {
-      content: '';
+      content: "";
       display: block;
       width: 36px;
       height: 3px;
@@ -2112,7 +2128,7 @@ footer {
 
   &:before {
     position: absolute;
-    content: '';
+    content: "";
     background: $PrimaryColor;
     width: 40px;
     height: 1px;
@@ -2123,7 +2139,7 @@ footer {
 
   &:after {
     position: absolute;
-    content: '';
+    content: "";
     background: $PrimaryColor;
     width: 25px;
     height: 1px;
