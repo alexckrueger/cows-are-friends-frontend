@@ -54,6 +54,7 @@ export default {
                         placeholder="User Name"
                         maxlength="70"
                         v-model="newSessionParams.email"
+                        style="background-color: #f1e3ff"
                       />
                     </div>
                   </div>
@@ -68,6 +69,7 @@ export default {
                         placeholder="Password"
                         maxlength="70"
                         v-model="newSessionParams.password"
+                        style="background-color: #f1e3ff"
                       />
                     </div>
                   </div>

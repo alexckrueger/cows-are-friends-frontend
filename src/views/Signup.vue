@@ -48,6 +48,7 @@ export default {
                         placeholder="User Name"
                         maxlength="70"
                         v-model="newUserParams.name"
+                        style="background-color: #f1e3ff"
                       />
                     </div>
                   </div>
@@ -61,6 +62,7 @@ export default {
                         placeholder="Email"
                         maxlength="70"
                         v-model="newUserParams.email"
+                        style="background-color: #f1e3ff"
                       />
                     </div>
                   </div>
@@ -74,6 +76,7 @@ export default {
                         placeholder="Password"
                         maxlength="70"
                         v-model="newUserParams.password"
+                        style="background-color: #f1e3ff"
                       />
                     </div>
                   </div>
@@ -87,6 +90,7 @@ export default {
                         placeholder="Confirm Password"
                         maxlength="70"
                         v-model="newUserParams.password_confirmation"
+                        style="background-color: #f1e3ff"
                       />
                     </div>
                   </div>
