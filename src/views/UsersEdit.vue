@@ -18,6 +18,7 @@ export default {
           this.$router.push(`/users/me`);
         })
         .catch((error) => {
+          console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
     },
@@ -40,7 +41,10 @@ export default {
           <div class="col-md-9 form-list center-col">
             <div class="row">
               <div class="col-md-12 margin-15px-bottom">
-                <router-link class="butn" :to="`/users/me`">Back to My Profile</router-link>
+                <router-link class="butn" :to="`/users/me`">
+                  <i class="fas fa-arrow-left"></i>
+                  Back to My Profile
+                </router-link>
               </div>
               <div class="form-group col-md-12">
                 <input
@@ -67,7 +71,6 @@ export default {
                   </ul>
                 </div>
               </div>
-
               <div class="col-md-12">
                 <button v-on:click="updateUser()" class="butn"><span>Save Changes</span></button>
               </div>

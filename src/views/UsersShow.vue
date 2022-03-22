@@ -57,23 +57,30 @@ export default {
                 <b>Welcome to Cows Are Friends, {{ user.name }}!</b>
                 We hope you find this resource valuable when looking for restaurants that meet your accommodations!
               </p>
-              <span>
-                <router-link to="/favorites" class="arrow">
-                  <p>
-                    <i class="fas fa-arrow-right"></i>
+              <div>
+                <router-link to="/favorites" class="butn margin-10px-bottom">
+                  <div>
                     My Favorites
-                  </p>
-                </router-link>
-              </span>
-              <span>
-                <router-link to="/reviews" class="arrow">
-                  <p>
                     <i class="fas fa-arrow-right"></i>
-                    My Reviews
-                  </p>
+                  </div>
                 </router-link>
-              </span>
-              <button class="butn" v-on:click="this.$router.push(`/users/me/edit`)">Edit Profile</button>
+              </div>
+              <div>
+                <router-link to="/reviews" class="butn margin-10px-bottom">
+                  <div>
+                    My Reviews
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                </router-link>
+              </div>
+              <div>
+                <router-link to="/users/me/edit" class="butn margin-10px-bottom">
+                  <div>
+                    Edit Profile
+                    <i class="fas fa-arrow-right"></i>
+                  </div>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>

@@ -248,6 +248,7 @@ export default {
                       v-on:click="redirectToReview(business)"
                     >
                       Review this restaurant
+                      <i class="fas fa-arrow-right"></i>
                     </button>
                   </li>
                 </ul>
