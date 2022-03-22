@@ -1005,7 +1005,7 @@ blockquote small:before {
   font-size: 16px;
 }
 .breadcrumb .breadcrumb-item.active {
-  color: #007bff;
+  color: #2ab518;
 }
 
 /* message */
@@ -1629,12 +1629,12 @@ blockquote small:before {
 }
 .nav-pills > li.active > a {
   color: #fff;
-  background-color: #007bff;
+  background-color: #2ab518;
 }
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #007bff;
+  background-color: #2ab518;
 }
 
 /* tabs */

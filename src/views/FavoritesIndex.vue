@@ -30,15 +30,15 @@ export default {
 <template>
   <div class="home">
     <!-- start page title section -->
-    <section class="page-title-section bg-img cover-background" style="background-color: #e8d1ff">
+    <div class="page-title-section bg-img cover-background padding-20px-top" style="background-color: #e8d1ff">
       <div class="container">
         <h1 style="color: #1a1a1a">My Favorites</h1>
       </div>
-    </section>
+    </div>
     <!-- end page title section -->
 
     <!-- start favorites section -->
-    <section style="background-color: #e8d1ff">
+    <div style="background-color: #e8d1ff">
       <div class="container">
         <router-link class="butn margin-15px-bottom" :to="`/users/me`">
           <span><i class="fas fa-arrow-left"></i></span>
@@ -74,7 +74,7 @@ export default {
           <!-- end favorites -->
         </div>
       </div>
-    </section>
+    </div>
     <!-- end favorites section -->
   </div>
 </template>

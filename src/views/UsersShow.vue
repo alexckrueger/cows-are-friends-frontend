@@ -26,15 +26,15 @@ export default {
 <template>
   <div class="home">
     <!-- start page title section -->
-    <section class="page-title-section bg-img cover-background" style="background-color: #e8d1ff">
+    <div class="page-title-section bg-img cover-background padding-20px-top" style="background-color: #e8d1ff">
       <div class="container">
         <h1 style="color: #1a1a1a">My Profile</h1>
       </div>
-    </section>
+    </div>
     <!-- end page title section -->
 
     <!-- start profile section -->
-    <section style="background-color: #e8d1ff">
+    <div style="background-color: #e8d1ff" class="padding-20px-bottom">
       <div class="container">
         <div class="row align-items-center margin-80px-bottom xs-margin-40px-bottom">
           <div class="col-md-5 xs-margin-20px-bottom">
@@ -75,7 +75,7 @@ export default {
           </div>
         </div>
       </div>
-    </section>
+    </div>
     <!-- end profile section -->
   </div>
 </template>

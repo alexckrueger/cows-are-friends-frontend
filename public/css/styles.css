@@ -445,7 +445,7 @@ input[type="radio"] {
     Page title
 ====================================== */
 .page-title-section {
-  padding: 95px 0 95px;
+  padding: 95px 0 -95px;
   text-align: center;
 }
 .page-title-section h1 {
