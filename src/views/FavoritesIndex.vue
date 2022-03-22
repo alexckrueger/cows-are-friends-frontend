@@ -44,7 +44,10 @@ export default {
     <!-- start favorites section -->
     <section>
       <div class="container">
-        <router-link class="butn margin-15px-bottom" :to="`/users/me`">Back to My Profile</router-link>
+        <router-link class="butn margin-15px-bottom" :to="`/users/me`">
+          <span><i class="fas fa-arrow-left"></i></span>
+          Back to My Profile
+        </router-link>
         <div class="row">
           <!-- start favorites -->
           <div

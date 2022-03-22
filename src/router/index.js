@@ -9,6 +9,7 @@ import Signup from "../views/Signup.vue";
 import UsersShow from "../views/UsersShow.vue";
 import UsersEdit from "../views/UsersEdit.vue";
 import ReviewsIndex from "../views/ReviewsIndex.vue";
+import ReviewsEdit from "../views/ReviewsEdit.vue";
 
 const routes = [
   {
@@ -60,6 +61,11 @@ const routes = [
     path: "/reviews",
     name: "ReviewsIndex",
     component: ReviewsIndex,
+  },
+  {
+    path: "/reviews/edit/:id",
+    name: "ReviewsEdit",
+    component: ReviewsEdit,
   },
 ];
 

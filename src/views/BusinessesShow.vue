@@ -89,12 +89,6 @@ export default {
     reviewDayjs: function (created_at) {
       return dayjs(created_at).toNow(true);
     },
-    deleteReview: function (review) {
-      if (confirm("Are you sure you to delete this?")) {
-        axios.delete(`/reviews/${review.id}`).then((response) => console.log("Success!", response.data));
-        this.$router.go();
-      }
-    },
     ratingSaying: function (rating) {
       if (rating > 4) {
         return "Wonderful!";
@@ -112,6 +106,9 @@ export default {
         icon = require("/src/assets/Red X.png");
       }
       return icon;
+    },
+    toReviewEdit: function (review) {
+      this.$router.push(`/reviews/edit/${review.id}`);
     },
   },
   mounted: function () {
@@ -303,8 +300,8 @@ export default {
                     reviewed {{ reviewDayjs(review.created_at) }} ago
                   </p>
                   <div>
-                    <button class="butn" v-if="user_id == review.user.id" v-on:click="deleteReview(review)">
-                      Delete Your Review
+                    <button class="butn" v-if="user_id == review.user.id" v-on:click="toReviewEdit(review)">
+                      Edit Your Review
                     </button>
                   </div>
                 </div>

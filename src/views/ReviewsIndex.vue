@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     toReviewEdit: function (review) {
-      console.log(review.id);
+      this.$router.push(`/reviews/edit/${review.id}`);
     },
   },
 };
@@ -50,7 +50,10 @@ export default {
     <!-- start favorites section -->
     <section>
       <div class="container">
-        <router-link class="butn margin-15px-bottom" :to="`/users/me`">Back to My Profile</router-link>
+        <router-link class="butn margin-15px-bottom" :to="`/users/me`">
+          <span><i class="fas fa-arrow-left"></i></span>
+          Back to My Profile
+        </router-link>
         <div class="row">
           <!-- start favorites -->
           <div class="col-lg-4 col-md-6 col-sm-12 margin-30px-bottom" v-for="review in reviews" v-bind:key="review.id">
@@ -70,7 +73,7 @@ export default {
                     Options Rating: {{ review.veggie_options_rating }}
                   </span>
                 </div>
-                <p class="no-margin-bottom">
+                <p class="no-margin-bottom font-size14">
                   {{ review.comment }}
                 </p>
                 <p class="no-margin-bottom">
