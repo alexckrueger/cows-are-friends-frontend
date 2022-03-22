@@ -244,11 +244,10 @@ export default {
                   <li>
                     <button
                       class="butn margin-30px-bottom"
-                      v-if="!business.reviewed"
+                      v-if="!business.reviewed && !!isLoggedIn"
                       v-on:click="redirectToReview(business)"
                     >
                       Review this restaurant
-                      <i class="fas fa-arrow-right"></i>
                     </button>
                   </li>
                 </ul>

@@ -4,9 +4,22 @@ import axios from "axios";
 export default {
   data: function () {
     return {
+      user: {},
       updateUserParams: {},
       errors: [],
     };
+  },
+  created: function () {
+    axios
+      .get("/users/me")
+      .then((response) => {
+        this.user = response.data;
+      })
+      .catch((error) => {
+        if (error.response.status == 401) {
+          this.$router.push("/login");
+        }
+      });
   },
   methods: {
     updateUser: function () {
@@ -34,7 +47,7 @@ export default {
 
 <template>
   <div class="home">
-    <!-- start contact form -->
+    <!-- start users edit form -->
     <section class="bg-light-gray contact-form" style="background-color: #e8d1ff">
       <div class="container margin-30px-top">
         <div class="row">
@@ -52,7 +65,8 @@ export default {
                   class="form-control no-margin-bottom padding-10px-tb"
                   name="exampleInputName"
                   id="exampleInputName"
-                  placeholder="Name"
+                  v-model="updateUserParams.name"
+                  :placeholder="user.name"
                   style="background-color: #f1e3ff"
                 />
               </div>
@@ -62,7 +76,8 @@ export default {
                   class="form-control no-margin-bottom padding-10px-tb"
                   name="exampleInputTitle"
                   id="exampleInputTitle"
-                  placeholder="Image URL"
+                  v-model="updateUserParams.image_url"
+                  :placeholder="user.image_url"
                   style="background-color: #f1e3ff"
                 />
               </div>
@@ -84,7 +99,7 @@ export default {
         </div>
       </div>
     </section>
-    <!-- end contact form -->
+    <!-- end users edit form -->
   </div>
 </template>
 
