@@ -21,15 +21,15 @@
 
                   <!-- start menu area -->
                   <ul class="navbar-nav ml-auto" id="nav" style="display: none">
-                    <li><router-link to="/">Home</router-link></li>
-                    <li><router-link v-if="!isLoggedIn" to="/login">Login</router-link></li>
-                    <li><router-link v-if="isLoggedIn" to="/logout">Logout</router-link></li>
-                    <li><router-link v-if="!isLoggedIn" to="/signup">Signup</router-link></li>
-                    <li v-if="isLoggedIn">
-                      <router-link to="/users/me">My Profile</router-link>
-                      <ul>
-                        <li><router-link to="/favorites">My Favorites</router-link></li>
-                        <li><router-link to="/reviews">My Reviews</router-link></li>
+                    <li><router-link to="/" class="navbar-hover">Home</router-link></li>
+                    <li><router-link v-if="!isLoggedIn" to="/login" class="navbar-hover">Login</router-link></li>
+                    <li><router-link v-if="isLoggedIn" to="/logout" class="navbar-hover">Logout</router-link></li>
+                    <li><router-link v-if="!isLoggedIn" to="/signup" class="navbar-hover">Signup</router-link></li>
+                    <li v-if="isLoggedIn" class="navbar-hover">
+                      <router-link to="/users/me" class="navbar-hover">My Profile</router-link>
+                      <ul style="background-color: #e8d1ff">
+                        <li class="navbar-hover"><router-link to="/favorites">My Favorites</router-link></li>
+                        <li class="navbar-hover"><router-link to="/reviews">My Reviews</router-link></li>
                       </ul>
                     </li>
                   </ul>
@@ -51,6 +51,9 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
+}
+.navbar-hover:hover {
+  background-color: #dbb8ff;
 }
 </style>
 
