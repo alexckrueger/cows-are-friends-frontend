@@ -133,7 +133,7 @@ export default {
     <!-- start map list section -->
     <div class="container-fluid no-padding">
       <div class="row no-gutters">
-        <div class="col-lg-6 order-2 order-lg-1">
+        <div class="col-lg-6 order-2 order-lg-1" style="background-color: #e8d1ff">
           <!-- Add search here -->
           <div class="padding-40px-all border-bottom">
             <div class="row">
@@ -257,10 +257,12 @@ export default {
 #mapContainer {
   height: 100%;
 }
-div {
-  background-color: #e8d1ff;
-}
-mapContainer div {
+#mapContainer div {
   background-color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bolder;
+}
+#mapContainer div .leaflet-popup-tip-container {
+  background-color: transparent;
 }
 </style>
