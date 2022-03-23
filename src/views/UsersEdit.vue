@@ -38,6 +38,9 @@ export default {
     deleteUser: function () {
       if (confirm("Are you sure you want to delete your account?")) {
         axios.delete("/users/me").then((response) => console.log(response.data));
+        delete axios.defaults.headers.common["Authorization"];
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("user_id");
         this.$router.push(`/signup`);
       }
     },
