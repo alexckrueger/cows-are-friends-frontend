@@ -38,8 +38,11 @@ export default {
       <div class="container">
         <div class="row align-items-center margin-80px-bottom xs-margin-40px-bottom">
           <div class="col-md-5 xs-margin-20px-bottom">
-            <div>
+            <div v-if="user.image_url">
               <img class="border-radius-4" :src="user.image_url" alt="Profile Image" />
+            </div>
+            <div v-else>
+              <p>Upload a profile image by editing your page!</p>
             </div>
           </div>
           <div class="col-md-7">

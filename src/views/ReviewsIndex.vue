@@ -43,15 +43,15 @@ export default {
     </div>
     <!-- end page title section -->
 
-    <!-- start favorites section -->
+    <!-- start reviews section -->
     <div style="background-color: #e8d1ff">
       <div class="container">
         <router-link class="butn margin-15px-bottom" :to="`/users/me`">
           <span><i class="fas fa-arrow-left"></i></span>
           Back to My Profile
         </router-link>
-        <div class="row">
-          <!-- start favorites -->
+        <div class="row" v-if="reviews.length > 0">
+          <!-- start reviews -->
           <div class="col-lg-4 col-md-6 col-sm-12 margin-30px-bottom" v-for="review in reviews" v-bind:key="review.id">
             <div class="card border-0 shadow h-100">
               <a href="#">
@@ -84,11 +84,18 @@ export default {
               </div>
             </div>
           </div>
-          <!-- end favorites -->
+          <!-- end reviews -->
+        </div>
+        <div
+          class="page-title-section bg-img cover-background padding-20px-top"
+          style="background-color: #e8d1ff"
+          v-else
+        >
+          <h3>You have no Reviews :(</h3>
         </div>
       </div>
     </div>
-    <!-- end favorites section -->
+    <!-- end reviews section -->
   </div>
 </template>
 

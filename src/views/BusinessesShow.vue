@@ -264,6 +264,7 @@ export default {
                 <div class="author-thumb col-xs-4 col-sm-3 col-md-2">
                   <h4>{{ review.user.name }}</h4>
                   <img
+                    v-if="review.user.image_url"
                     :src="review.user.image_url"
                     alt="/src/assets/cowsarefriends.png"
                     class="rounded-circle width-85 xs-width-100 avatar-picture"
@@ -288,6 +289,7 @@ export default {
                     </div>
                   </div>
                   <lightgallery
+                    v-if="review.image_url"
                     :settings="{ speed: 500, plugins: plugins }"
                     :onInit="onInit"
                     :onBeforeSlide="onBeforeSlide"

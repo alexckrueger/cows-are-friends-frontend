@@ -44,8 +44,8 @@ export default {
           <span><i class="fas fa-arrow-left"></i></span>
           Back to My Profile
         </router-link>
-        <div class="row">
-          <!-- start favorites -->
+        <!-- start favorites -->
+        <div class="row" v-if="favorites.length > 0">
           <div
             class="col-lg-4 col-md-6 col-sm-12 margin-30px-bottom"
             v-for="favorite in favorites"
@@ -71,7 +71,14 @@ export default {
               </div>
             </div>
           </div>
-          <!-- end favorites -->
+        </div>
+        <!-- end favorites -->
+        <div
+          class="page-title-section bg-img cover-background padding-20px-top"
+          style="background-color: #e8d1ff"
+          v-else
+        >
+          <h3>You have no Favorites :(</h3>
         </div>
       </div>
     </div>
