@@ -260,4 +260,7 @@ export default {
 div {
   background-color: #e8d1ff;
 }
+mapContainer div {
+  background-color: white;
+}
 </style>
