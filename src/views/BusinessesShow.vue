@@ -98,7 +98,7 @@ export default {
   },
   mounted: function () {
     var mapboxKey = process.env.VUE_APP_MAPBOX_API_KEY;
-    this.mapDiv = L.map(this.$refs["mapElement"]).setView(this.center, 15);
+    this.mapDiv = L.map("smallMapContainer").setView(this.center, 15);
     L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
       attribution:
         'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -213,7 +213,7 @@ export default {
           <div class="col-lg-4">
             <div class="side-bar">
               <div class="widget">
-                <div id="smallMapContainer" ref="mapElement"></div>
+                <div id="smallMapContainer"></div>
               </div>
               <div class="widget">
                 <div class="widget-title margin-35px-bottom">
