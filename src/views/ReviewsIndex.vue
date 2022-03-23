@@ -20,7 +20,7 @@ export default {
           this.$router.push("/login");
         }
       });
-    axios.get(`http://localhost:3000/reviews`).then((response) => {
+    axios.get(`/reviews`).then((response) => {
       this.reviews = response.data;
       console.log(this.reviews);
     });

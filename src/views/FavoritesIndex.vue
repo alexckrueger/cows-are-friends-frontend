@@ -19,7 +19,7 @@ export default {
           this.$router.push("/login");
         }
       });
-    axios.get(`http://localhost:3000/favorites`).then((response) => {
+    axios.get(`/favorites`).then((response) => {
       this.favorites = response.data;
     });
   },
