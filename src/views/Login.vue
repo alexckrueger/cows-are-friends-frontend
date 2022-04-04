@@ -48,10 +48,10 @@ export default {
                       <input
                         class="form-control"
                         type="text"
-                        name="username"
-                        id="username"
+                        name="email"
+                        id="email"
                         required="required"
-                        placeholder="User Name"
+                        placeholder="email"
                         maxlength="70"
                         v-model="newSessionParams.email"
                         style="background-color: #f1e3ff"
