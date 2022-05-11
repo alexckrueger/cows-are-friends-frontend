@@ -4,6 +4,8 @@
 
 I am a veggie, meaning I have a vegetarian-like dietary restriction. When I'm choosing to go out to eat, I typically either stick with what I know or go to a place that is specifically for vegetarians/vegans. I've been to far too many places that say they have vegetarian options only to show up and be offered a side salad. This is why I created Cows Are Friends.
 
+![preview](./src/assets/CAFpreview.png)
+
 ## About My App
 
 Cows Are Friends gives vegetarians and vegans a place to review all types of restaurants specifically on how veggie-friendly they are. We can simply search any restaurant and view reviews made by other veggies whenever we're looking for a place to eat, looking to see what's in the area, or perhaps being dragged out by friends or family against your will.
